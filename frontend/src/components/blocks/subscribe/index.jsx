@@ -6,7 +6,7 @@ import { ArrowRight, Mail } from "lucide-react";
 export default function Subscribe() {
   return (
     <form
-      className="container mx-auto px-8 2xl:max-w-[1400px]">
+      className="my-4 2xl:max-w-[1400px]">
       <div className=" flex flex-col sm:flex-row items-center gap-2 rounded-lg">
         <div className="relative w-full">
           <Label htmlFor="subscribe-input" className="sr-only">

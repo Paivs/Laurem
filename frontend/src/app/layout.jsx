@@ -1,29 +1,31 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/components/blocks/navbar";
-import Footer from "@/components/blocks/footers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+import { Nunito, Montserrat } from 'next/font/google';
+
+const nunito = Nunito({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--display-family',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--text-family',
 });
 
 export const metadata = {
   title: "Laurem",
-  description: "Criamos soluções digitais acessíveis e éticas para quem vive do próprio trabalho.",
+  description:
+    "Criamos soluções digitais acessíveis e éticas para quem vive do próprio trabalho.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${nunito.variable} ${montserrat.variable} font-sans`}>
+        {/* Ou para usar Cormorant: */}
+        {/* <body className={`${cormorant.variable} font-serif`}> */}
         {children}
       </body>
     </html>

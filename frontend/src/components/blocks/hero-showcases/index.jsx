@@ -35,9 +35,8 @@ export default function HeroShowcases() {
 
             {/* Description text */}
             <p className="text-muted-foreground max-w-xl text-lg">
-              A Laurem acredita que o autônomo merece liberdade. Nossos produtos
+              A Laurem acredita que todos merecem liberdade. Nossos produtos
               são feitos para você controlar, editar, e, se quiser, hospedar.
-              Sem mensalidades obrigatórias.
             </p>
 
             {/* Featured clients section */}

@@ -32,7 +32,6 @@ import Link from "next/link";
 const navigationLinks = [
   { href: "/", label: "Home", icon: HouseIcon, active: true },
   { href: "/blogs", label: "Blog", icon: Newspaper },
-  { href: "/contato", label: "Contato", icon: Contact },
   { href: "/eventos", label: "Eventos", icon: MicVocal },
   {
     href: "/projetos",
@@ -40,6 +39,7 @@ const navigationLinks = [
     projetos: ["Liszt - Para terapeutas", "Neuman - Para advogados"],
     icon: PenBox,
   }, //opção com dropdown e listar projeto cada um é um id no projetos
+  { href: "/contato", label: "Contato", icon: Contact },
 ];
 
 export default function NavBar() {
