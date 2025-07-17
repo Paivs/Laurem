@@ -26,25 +26,37 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-// Navigation links array to be used in both desktop and mobile menus
-const navigationLinks = [
-  { href: "/", label: "Home", icon: HouseIcon, active: true },
-  { href: "/blogs", label: "Blog", icon: Newspaper },
-  { href: "/eventos", label: "Eventos", icon: MicVocal },
-  {
-    href: "/projetos",
-    label: "Soluções",
-    projetos: ["Liszt - Para terapeutas", "Neuman - Para advogados"],
-    icon: PenBox,
-  }, //opção com dropdown e listar projeto cada um é um id no projetos
-  { href: "/contato", label: "Contato", icon: Contact },
-];
-
 export default function NavBar() {
+  const pathname = usePathname();
   const id = useId();
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Atualize o array de links para não ter active hardcoded
+  const navigationLinks = [
+    { href: "/", label: "Home", icon: HouseIcon },
+    { href: "/blogs", label: "Blog", icon: Newspaper },
+    { href: "/eventos", label: "Eventos", icon: MicVocal },
+    {
+      href: "/projetos",
+      label: "Soluções",
+      projetos: ["Liszt - Para terapeutas", "Neuman - Para advogados"],
+      icon: PenBox,
+    },
+    { href: "/contato", label: "Contato", icon: Contact },
+  ];
+
+  // Função para verificar se o link está ativo
+  const isActive = (href) => {
+    // Verifica se é a página inicial
+    if (href === "/") {
+      return pathname === href;
+    }
+    // Para outras páginas, verifica se o pathname começa com o href
+    return pathname.startsWith(href);
+  };
 
   // Efeito para calcular o progresso do scroll
   useEffect(() => {
@@ -81,13 +93,19 @@ export default function NavBar() {
               return (
                 <NavigationMenuItem key={index}>
                   <NavigationMenuLink
-                    active={link.active}
+                    active={isActive(link.href)} // Aqui usamos a função isActive
                     href={link.href}
-                    className={`text-foreground hover:text-primary flex-row items-center gap-2 py-1.5 text-lg font-medium`}
+                    className={`text-foreground hover:text-primary flex-row items-center gap-2 py-1.5 text-lg font-medium ${
+                      isActive(link.href) ? "text-primary" : ""
+                    }`}
                   >
                     <Icon
                       size={16}
-                      className="text-muted-foreground/80"
+                      className={
+                        isActive(link.href)
+                          ? "text-primary"
+                          : "text-muted-foreground/80"
+                      }
                       aria-hidden="true"
                     />
                     <span>{link.label}</span>
