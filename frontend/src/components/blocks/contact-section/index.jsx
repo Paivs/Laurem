@@ -25,7 +25,11 @@ export default function ContactSection({
               </h1>
               <p className="text-muted-foreground">{description}</p>
               <div className="flex items-center justify-center">
-              <img src="/img/app-launch.svg" alt="" className="max-h-[30vh]"/>
+                <img
+                  src="/img/app-launch.svg"
+                  alt=""
+                  className="max-h-[30vh]"
+                />
               </div>
             </div>
             <div className="mx-auto w-fit lg:mx-0">
@@ -58,24 +62,48 @@ export default function ContactSection({
             <div className="flex gap-4">
               <div className="grid w-full items-center gap-1.5">
                 <Label htmlFor="firstname">Primeiro Nome</Label>
-                <Input className={"border border-primary/25"} type="text" id="firstname" placeholder="First Name" />
+                <Input
+                  className={"border border-primary/25"}
+                  type="text"
+                  id="firstname"
+                  placeholder="Escreva seu primeiro nome"
+                />
               </div>
               <div className="grid w-full items-center gap-1.5">
                 <Label htmlFor="lastname">Último Nome</Label>
-                <Input className={"border border-primary/25"} type="text" id="lastname" placeholder="Last Name" />
+                <Input
+                  className={"border border-primary/25"}
+                  type="text"
+                  id="lastname"
+                  placeholder="Escreva seu último nome"
+                />
               </div>
             </div>
             <div className="grid w-full items-center gap-1.5">
               <Label htmlFor="email">Email</Label>
-              <Input className={"border border-primary/25"} type="email" id="email" placeholder="Email" />
+              <Input
+                className={"border border-primary/25"}
+                type="email"
+                id="email"
+                placeholder="Email"
+              />
             </div>
             <div className="grid w-full items-center gap-1.5">
               <Label htmlFor="subject">Assunto</Label>
-              <Input className={"border border-primary/25"} type="text" id="subject" placeholder="Subject" />
+              <Input
+                className={"border border-primary/25"}
+                type="text"
+                id="subject"
+                placeholder="Assunto"
+              />
             </div>
             <div className="grid w-full gap-1.5">
               <Label htmlFor="message">Mensagem</Label>
-              <Textarea className={"border border-primary/25"} placeholder="Type your message here." id="message" />
+              <Textarea
+                className={"border border-primary/25"}
+                placeholder="Escreva sua mensagem aqui"
+                id="message"
+              />
             </div>
             <Button className="w-full">Enviar</Button>
           </div>
@@ -143,7 +171,7 @@ export default function ContactSection({
           </Link>
 
           <Link
-            href={"/trabalhos"}
+            href={"/trabalho"}
             className="group hover:bg-muted flex h-full flex-col rounded-lg p-4 text-center sm:p-6"
           >
             <Wrench className="text-muted-foreground mx-auto size-9" />

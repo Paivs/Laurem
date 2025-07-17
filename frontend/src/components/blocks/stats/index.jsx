@@ -1,6 +1,70 @@
+"use client"
+
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { useEffect, useState } from "react";
 
 export default function Stats() {
+  const [parceiros, setParceiros] = useState(0);
+  const [clientesSatisfeitos, setClientesSatisfeitos] = useState(0);
+  const [anuncios, setAnuncios] = useState(0);
+
+  // Animação para parceiros (200)
+  useEffect(() => {
+    const target = 200;
+    const duration = 2000; // 2 segundos
+    const increment = target / (duration / 16); // ~60fps
+    
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      setParceiros(Math.floor(current));
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // Animação para clientes satisfeitos (98%)
+  useEffect(() => {
+    const target = 98;
+    const duration = 2000; // 2 segundos
+    const increment = target / (duration / 16);
+    
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      setClientesSatisfeitos(Math.floor(current));
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  // Animação para anúncios (300)
+  useEffect(() => {
+    const target = 300;
+    const duration = 2000; // 2 segundos
+    const increment = target / (duration / 16);
+    
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      setAnuncios(Math.floor(current));
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <>
       {/* Estatísticas */}
@@ -31,7 +95,7 @@ export default function Stats() {
                   </svg>
                   <div className="mt-3 sm:mt-5">
                     <h3 className="text-lg sm:text-3xl font-semibold">
-                      +2.000
+                      +{parceiros}
                     </h3>
                     <p className="mt-1 text-sm sm:text-base text-muted-foreground">
                       Parceiros comerciais
@@ -57,7 +121,7 @@ export default function Stats() {
                     </Avatar>
                   </div>
                   <div className="mt-3 sm:mt-5">
-                    <h3 className="text-lg sm:text-3xl font-semibold">98%</h3>
+                    <h3 className="text-lg sm:text-3xl font-semibold">{clientesSatisfeitos}%</h3>
                     <p className="mt-1 text-sm sm:text-base text-muted-foreground">
                       Clientes satisfeitos
                     </p>
@@ -86,7 +150,7 @@ export default function Stats() {
                     <circle cx="6" cy="5" r="3" />
                   </svg>
                   <div className="mt-3 sm:mt-5">
-                    <h3 className="text-lg sm:text-3xl font-semibold">R$ 300M+</h3>
+                    <h3 className="text-lg sm:text-3xl font-semibold">R$ {anuncios}M+</h3>
                     <p className="mt-1 text-sm sm:text-base text-muted-foreground">
                       Em anúncios gerenciados anualmente
                     </p>

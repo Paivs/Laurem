@@ -7,9 +7,9 @@ export default function CTABanner() {
   return (
     <div className="bg-primary w-full py-12 md:py-16">
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.25, delay: 0.25 }}
+        transition={{ duration: 0.12, delay: 0.12 }}
         viewport={{ once: true }}
         className="container mx-auto px-4 text-center"
       >

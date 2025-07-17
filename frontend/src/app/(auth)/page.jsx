@@ -18,7 +18,11 @@ import ResourceDownload from "@/components/blocks/resource-download";
 export default function Home() {
   return (
     <>
-      <HeroShowcases />
+      <section className="pt-14 md:pt-0">
+        <HeroShowcases />
+      </section>
+
+      <CTABanner />
 
       <motion.section
         className="min-h-screen flex flex-col items-center justify-center"
@@ -28,8 +32,6 @@ export default function Home() {
       >
         <Masonry />
       </motion.section>
-
-      <CTABanner />
 
       <section className="min-h-screen flex items-center justify-center ">
         <AnimatedSection>
@@ -51,7 +53,7 @@ export default function Home() {
 
       <Quote />
 
-      <ResourceDownload/>
+      <ResourceDownload />
     </>
   );
 }

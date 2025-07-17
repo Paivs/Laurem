@@ -1,10 +1,17 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import { motion } from "motion/react";
 
 export default function HeroShowcases() {
   return (
-    <div className="relative overflow-hidden h-screen flex items-center justify-center">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.12, delay: 0.25 }}
+      viewport={{ once: true }}
+      className="relative overflow-hidden h-screen flex items-center justify-center"
+    >
       {/* Background gradient accent */}
       <div className="bg-primary/10 absolute -top-32 -left-32 h-96 w-96 rounded-full blur-3xl" />
       <div className="bg-primary/5 absolute -right-32 -bottom-32 h-96 w-96 rounded-full blur-3xl" />
@@ -97,6 +104,6 @@ export default function HeroShowcases() {
           <div className="border-primary/10 bg-background/50 absolute -bottom-6 -left-6 h-24 w-24 rounded-full border backdrop-blur-sm"></div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
