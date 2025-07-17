@@ -5,6 +5,7 @@ import {
   Contact,
   HouseIcon,
   InboxIcon,
+  MicVocal,
   Newspaper,
   PenBox,
   SearchIcon,
@@ -32,6 +33,7 @@ const navigationLinks = [
   { href: "/", label: "Home", icon: HouseIcon, active: true },
   { href: "/blogs", label: "Blog", icon: Newspaper },
   { href: "/contato", label: "Contato", icon: Contact },
+  { href: "/eventos", label: "Eventos", icon: MicVocal },
   {
     href: "/projetos",
     label: "Soluções",
