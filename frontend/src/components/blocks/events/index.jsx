@@ -118,10 +118,10 @@ export default function Events() {
               className="flex flex-col overflow-hidden pt-0 transition-all duration-300 hover:shadow-md"
             >
               <div className="relative h-48 w-full overflow-hidden">
-                <Image
+                <img
                   src={event.image}
                   alt={event.title}
-                  fill
+                  fill={"true"}
                   className="object-cover transition-transform duration-500 hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>

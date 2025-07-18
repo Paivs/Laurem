@@ -13,7 +13,7 @@ export default function ResourceDownload() {
           <div className="relative h-full min-h-[300px] md:min-h-0">
             <div className="absolute inset-0 w-full overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+                src="/img/home_section_pdf.avif"
                 alt="UX Design Checklist preview"
                 fill
                 className="object-cover object-center"
