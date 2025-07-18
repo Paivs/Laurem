@@ -55,7 +55,7 @@ export default function NavBar() {
     { href: "/projetos", label: "Projetos", icon: PenBox },
     { href: "/servicos", label: "Serviços", icon: Server },
     { href: "/eventos", label: "Eventos", icon: MicVocal },
-    { href: "/blogs", label: "Blog", icon: Newspaper },
+    { href: "/blog", label: "Blog", icon: Newspaper },
   ];
 
   // Função para verificar se o link está ativo
