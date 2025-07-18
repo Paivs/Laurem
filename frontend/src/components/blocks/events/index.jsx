@@ -23,7 +23,7 @@ const events = [
       "Discutimos as tendências emergentes em design responsivo e como a IA está mudando a forma como construímos interfaces adaptáveis.",
     image:
       "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=2070&auto=format&fit=crop",
-    link: "#",
+    link: "/eventos/detalhar/",
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ const events = [
       "Workshop prático ensinando métodos de pesquisa com usuários que podem ser implementados com qualquer orçamento.",
     image:
       "https://images.unsplash.com/photo-1544531585-9847b68c8c86?q=80&w=2070&auto=format&fit=crop",
-    link: "#",
+    link: "/eventos/detalhar/",
   },
   {
     id: 3,
@@ -49,7 +49,7 @@ const events = [
       "Liderei uma discussão sobre as melhores práticas para construir produtos digitais acessíveis do zero.",
     image:
       "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2112&auto=format&fit=crop",
-    link: "#",
+    link: "/eventos/detalhar/",
   },
   {
     id: 4,
@@ -62,7 +62,7 @@ const events = [
       "Compartilhei minha jornada e conselhos práticos para freelancers que desejam expandir seus negócios e construir uma equipe.",
     image:
       "https://images.unsplash.com/photo-1591115765373-5207764f72e7?q=80&w=2070&auto=format&fit=crop",
-    link: "#",
+    link: "/eventos/detalhar/",
   },
   {
     id: 5,
@@ -75,7 +75,7 @@ const events = [
       "Workshop de um dia sobre como criar, implementar e manter sistemas de design para grandes organizações.",
     image:
       "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
-    link: "#",
+    link: "/eventos/detalhar/",
   },
   {
     id: 6,
@@ -88,7 +88,7 @@ const events = [
       "Apresentei estratégias para criar sites que equilibram uma experiência do usuário excepcional com metas de conversão de negócios.",
     image:
       "https://images.unsplash.com/photo-1540304453527-62f979142a17?q=80&w=2070&auto=format&fit=crop",
-    link: "#",
+    link: "/eventos/detalhar/",
   },
 ];
 
@@ -105,7 +105,8 @@ export default function Events() {
             Palestras e Workshops
           </h2>
           <p className="text-muted-foreground mx-auto mt-4 max-w-2xl text-lg">
-            Eu sou palestrante regular em conferências e lidero workshops sobre design, desenvolvimento e estratégia digital
+            Eu sou palestrante regular em conferências e lidero workshops sobre
+            design, desenvolvimento e estratégia digital
           </p>
         </div>
 
@@ -114,15 +115,16 @@ export default function Events() {
           {events.map((event) => (
             <Card
               key={event.id}
-              className="flex flex-col overflow-hidden pt-0 transition-all duration-300 hover:shadow-md">
+              className="flex flex-col overflow-hidden pt-0 transition-all duration-300 hover:shadow-md"
+            >
               <div className="relative h-48 w-full overflow-hidden">
                 <Image
                   src={event.image}
                   alt={event.title}
                   fill
-                  className="object-cover transition-transform duration-500 hover:scale-105" />
-                <div
-                  className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                 <Badge className="absolute bottom-4 left-4" variant="secondary">
                   {event.role}
                 </Badge>
@@ -153,10 +155,12 @@ export default function Events() {
 
               <CardFooter className="pt-0">
                 <Button variant="ghost" asChild className="group">
-                  <Link href={event.link} className="text-primary flex items-center">
+                  <Link
+                    href={`${event.link}/${event.id}`}
+                    className="text-primary flex items-center"
+                  >
                     <span className="mr-2">Detalhes do evento</span>
-                    <ArrowRight
-                      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </Button>
               </CardFooter>
