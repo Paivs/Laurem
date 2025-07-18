@@ -5,14 +5,26 @@ import {
   Contact,
   HouseIcon,
   InboxIcon,
+  ListPlus,
+  MicVocal,
   Newspaper,
+  Option,
   PenBox,
   SearchIcon,
+  Server,
   ZapIcon,
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import Logo from "@/components/blocks/navbar/navbar-components/logo";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
   NavigationMenu,
@@ -21,28 +33,40 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-// Navigation links array to be used in both desktop and mobile menus
-const navigationLinks = [
-  { href: "/", label: "Home", icon: HouseIcon, active: true },
-  { href: "/blog", label: "Blog", icon: Newspaper },
-  { href: "/contato", label: "Contato", icon: Contact },
-  {
-    href: "/projetos",
-    label: "Soluções",
-    projetos: ["Liszt - Para terapeutas", "Neuman - Para advogados"],
-    icon: PenBox,
-  }, //opção com dropdown e listar projeto cada um é um id no projetos
-];
-
 export default function NavBar() {
+  const pathname = usePathname();
   const id = useId();
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Atualize o array de links para não ter active hardcoded
+  const navigationLinks = [
+    { href: "/projetos", label: "Projetos", icon: PenBox },
+    { href: "/servicos", label: "Serviços", icon: Server },
+    { href: "/eventos", label: "Eventos", icon: MicVocal },
+    { href: "/blog", label: "Blog", icon: Newspaper },
+  ];
+
+  // Função para verificar se o link está ativo
+  const isActive = (href) => {
+    // Verifica se é a página inicial
+    if (href === "/") {
+      return pathname === href;
+    }
+    // Para outras páginas, verifica se o pathname começa com o href
+    return pathname.startsWith(href);
+  };
 
   // Efeito para calcular o progresso do scroll
   useEffect(() => {
@@ -60,8 +84,8 @@ export default function NavBar() {
   }, []);
 
   return (
-    <header className="border-b px-4 md:px-8 fixed top w-screen z-50 bg-background">
-      <div className="flex h-16 items-center justify-between gap-4">
+    <header className="border-b md:px-8 fixed top w-screen z-50 bg-background">
+      <div className="flex h-16 items-center justify-between gap-4 max-w-[calc(100vw-2rem)] md:max-w-[calc(100vw-5rem)]">
         {/* Left side */}
         <div className="flex flex-1 items-center gap-2">
           {/* Logo */}
@@ -79,13 +103,19 @@ export default function NavBar() {
               return (
                 <NavigationMenuItem key={index}>
                   <NavigationMenuLink
-                    active={link.active}
+                    active={isActive(link.href)}
                     href={link.href}
-                    className={`text-foreground hover:text-primary flex-row items-center gap-2 py-1.5 text-lg font-medium`}
+                    className={`text-foreground hover:text-primary flex-row items-center gap-2 py-1.5 text-lg font-medium ${
+                      isActive(link.href) ? "text-primary" : ""
+                    }`}
                   >
                     <Icon
                       size={16}
-                      className="text-muted-foreground/80"
+                      className={
+                        isActive(link.href)
+                          ? "text-primary"
+                          : "text-muted-foreground/80"
+                      }
                       aria-hidden="true"
                     />
                     <span>{link.label}</span>
@@ -93,12 +123,53 @@ export default function NavBar() {
                 </NavigationMenuItem>
               );
             })}
+            <DropdownMenu modal={false}>
+              <DropdownMenuTrigger asChild>
+                <NavigationMenuItem
+                  className={`text-foreground hover:text-primary flex-row items-center gap-2 py-1.5 text-lg font-medium`}
+                >
+                  <Button
+                    variant={"ghost"}
+                    className={`text-foreground hover:text-primary flex-row p-2 items-center gap-2 py-1.5 text-lg font-medium`}
+                  >
+                    <ListPlus
+                      size={16}
+                      className="text-muted-foreground/80"
+                      aria-hidden={"true"}
+                    />
+                    Outros
+                  </Button>
+                </NavigationMenuItem>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>
+                  {" "}
+                  <Link href="/contato">Contato</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  {" "}
+                  <Link href="/vendas">Vendas</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  {" "}
+                  <Link href="/sobre">Sobre</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  {" "}
+                  <Link href="/cursos">Aprenda conosco</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  {" "}
+                  <Link href="/principios">Principios</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </NavigationMenuList>
         </NavigationMenu>
 
         {/* Mobile menu trigger */}
-        <Popover>
-          <PopoverTrigger asChild className="mx-2">
+        <Sheet>
+          <SheetTrigger asChild className="mx-2">
             <Button
               className="group size-8 md:hidden"
               variant="ghost"
@@ -130,9 +201,13 @@ export default function NavBar() {
                 />
               </svg>
             </Button>
-          </PopoverTrigger>
-          <PopoverContent align="start" className="w-36 p-1 md:hidden">
-            <NavigationMenu className="max-w-none *:w-full">
+          </SheetTrigger>
+          <SheetContent align="start" className="p-1 md:hidden">
+            <SheetHeader>
+              <SheetTitle>Menu</SheetTitle>
+              <SheetDescription>Navegue pelas páginas do site</SheetDescription>
+            </SheetHeader>
+            <NavigationMenu className="max-w-none *:w-full h-fit flex items-start">
               <NavigationMenuList className="flex-col items-start gap-0 md:gap-2">
                 {navigationLinks.map((link, index) => {
                   const Icon = link.icon;
@@ -153,10 +228,51 @@ export default function NavBar() {
                     </NavigationMenuItem>
                   );
                 })}
+                <DropdownMenu modal={false}>
+                  <DropdownMenuTrigger asChild>
+                    <NavigationMenuItem
+                      className={`text-foreground hover:text-primary flex-row items-center gap-2 py-1.5 text-lg font-medium`}
+                    >
+                      <Button
+                        variant={"ghost"}
+                        className={`text-foreground hover:text-primary flex-row p-2 items-center gap-2 py-1.5 text-lg font-medium`}
+                      >
+                        <ListPlus
+                          size={16}
+                          className="text-muted-foreground/80"
+                          aria-hidden={"true"}
+                        />
+                        Outros
+                      </Button>
+                    </NavigationMenuItem>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Link href="/contato">Contato</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Link href="/vendas">Vendas</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Link href="/sobre">Sobre</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Link href="/cursos">Aprenda conosco</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Link href="/principios">Principios</Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </NavigationMenuList>
             </NavigationMenu>
-          </PopoverContent>
-        </Popover>
+          </SheetContent>
+        </Sheet>
       </div>
       <div className="absolute bottom-0 left-0 right-0 h-1">
         <Progress

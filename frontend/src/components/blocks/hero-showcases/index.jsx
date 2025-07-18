@@ -35,9 +35,8 @@ export default function HeroShowcases() {
 
             {/* Description text */}
             <p className="text-muted-foreground max-w-xl text-lg">
-              A Laurem acredita que o autônomo merece liberdade. Nossos produtos
+              A Laurem acredita que todos merecem liberdade. Nossos produtos
               são feitos para você controlar, editar, e, se quiser, hospedar.
-              Sem mensalidades obrigatórias.
             </p>
 
             {/* Featured clients section */}
@@ -90,7 +89,7 @@ export default function HeroShowcases() {
           {/* Main image with frame */}
           <div className="border-muted/30 bg-muted/10 relative z-10 h-full w-full overflow-hidden rounded-2xl border shadow-xl">
             <Image
-              src="https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?q=80&w=1064&auto=format&fit=crop&ixlib=rb-4.0.3"
+              src="/img/home_section_1.avif"
               alt="Designer's workspace with contemporary design elements"
               fill
               className="object-cover object-center"
