@@ -142,7 +142,7 @@ export default function NavBar() {
                       className="text-muted-foreground/80"
                       aria-hidden={"true"}
                     />
-                    Open
+                    Outros
                   </Button>
                 </NavigationMenuItem>
               </DropdownMenuTrigger>
@@ -150,6 +150,10 @@ export default function NavBar() {
                 <DropdownMenuItem>
                   {" "}
                   <Link href="/sobre">Sobre</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  {" "}
+                  <Link href="/cursos">Aprenda conosco</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   {" "}

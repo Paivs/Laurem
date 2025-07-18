@@ -17,13 +17,13 @@ export default function Footer2({
       links: [
         { text: "Liszt - Para terapeutas", url: "/projetos/#liszt" },
         { text: "Neuman - Para advogados", url: "/projetos/#neuman" },
-        { text: "Planos e Preços", url: "#" },
+        { text: "Planos e Preços", url: "/vendas" },
       ],
     },
     {
       title: "Empresa",
       links: [
-        { text: "Sobre", url: "/#sobre" },
+        { text: "Sobre", url: "/sobre" },
         { text: "Blog", url: "/blog" },
         { text: "Trabalhe conosco", url: "/trabalho" },
         { text: "Contato", url: "/contato" },
@@ -32,7 +32,8 @@ export default function Footer2({
     {
       title: "Recursos",
       links: [
-        { text: "Capacitação e Consultoria", url: "/consultoria" },
+        { text: "Eventos", url: "/eventos" },
+        { text: "Aprendizado", url: "/cursos" },
         { text: "Vendas", url: "/vendas" },
         { text: "Ajuda", url: "/ajuda" },
       ],
@@ -40,8 +41,8 @@ export default function Footer2({
     {
       title: "Redes",
       links: [
-        { text: "Instagram", url: "#" },
-        { text: "LinkedIn", url: "#" },
+        { text: "Instagram", url: "https://instagram.com/" },
+        { text: "LinkedIn", url: "https://linkedin.com/" },
       ],
     },
   ],

@@ -83,7 +83,7 @@ export default function WhyWork() {
             Transformações
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            O Impacto do nosso Trabalho
+            Porque trabalhar na Laurem
           </h2>
           <p className="text-muted-foreground mx-auto mt-4 max-w-2xl text-lg">
             Veja a diferença que nossa colaboração pode fazer através desses projetos antes e depois
@@ -131,11 +131,10 @@ export default function WhyWork() {
                             <Badge>Depois</Badge>
                           </div>
                           <div className="relative aspect-video">
-                            <Image
+                            <img
                               src={project.after.image}
                               alt={`${project.title} depois`}
-                              fill
-                              className="object-cover" />
+                              className="object-cover w-full h-full" />
                           </div>
                           <div className="border-primary/10 bg-muted/50 p-2 text-center text-xs">
                             {project.after.caption}
