@@ -11,6 +11,7 @@ import {
   Option,
   PenBox,
   SearchIcon,
+  Server,
   ZapIcon,
 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
@@ -51,16 +52,10 @@ export default function NavBar() {
 
   // Atualize o array de links para não ter active hardcoded
   const navigationLinks = [
-    { href: "/", label: "Home", icon: HouseIcon },
-    { href: "/blogs", label: "Blog", icon: Newspaper },
+    { href: "/projetos", label: "Projetos", icon: PenBox },
+    { href: "/servicos", label: "Serviços", icon: Server },
     { href: "/eventos", label: "Eventos", icon: MicVocal },
-    {
-      href: "/projetos",
-      label: "Soluções",
-      projetos: ["Liszt - Para terapeutas", "Neuman - Para advogados"],
-      icon: PenBox,
-    },
-    { href: "/contato", label: "Contato", icon: Contact },
+    { href: "/blogs", label: "Blog", icon: Newspaper },
   ];
 
   // Função para verificar se o link está ativo
@@ -149,6 +144,14 @@ export default function NavBar() {
               <DropdownMenuContent>
                 <DropdownMenuItem>
                   {" "}
+                  <Link href="/contato">Contato</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  {" "}
+                  <Link href="/vendas">Vendas</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  {" "}
                   <Link href="/sobre">Sobre</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
@@ -225,6 +228,47 @@ export default function NavBar() {
                     </NavigationMenuItem>
                   );
                 })}
+                <DropdownMenu modal={false}>
+                  <DropdownMenuTrigger asChild>
+                    <NavigationMenuItem
+                      className={`text-foreground hover:text-primary flex-row items-center gap-2 py-1.5 text-lg font-medium`}
+                    >
+                      <Button
+                        variant={"ghost"}
+                        className={`text-foreground hover:text-primary flex-row p-2 items-center gap-2 py-1.5 text-lg font-medium`}
+                      >
+                        <ListPlus
+                          size={16}
+                          className="text-muted-foreground/80"
+                          aria-hidden={"true"}
+                        />
+                        Outros
+                      </Button>
+                    </NavigationMenuItem>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Link href="/contato">Contato</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Link href="/vendas">Vendas</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Link href="/sobre">Sobre</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Link href="/cursos">Aprenda conosco</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      {" "}
+                      <Link href="/principios">Principios</Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </NavigationMenuList>
             </NavigationMenu>
           </SheetContent>
