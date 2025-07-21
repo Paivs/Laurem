@@ -162,6 +162,11 @@ export default function NavBar() {
                   {" "}
                   <Link href="/principios">Principios</Link>
                 </DropdownMenuItem>
+                <DropdownMenuSeparator/>
+                <DropdownMenuItem>
+                  {" "}
+                  <Link href="/auth/login">Admin</Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </NavigationMenuList>

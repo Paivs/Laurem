@@ -1,4 +1,4 @@
-import clientPromise from '@/lib/mongodb';
+import {clientPromise} from '@/lib/mongodb';
 import { comparePasswords } from '@/lib/authUtils';
 import { SignJWT } from 'jose';
 import { getJwtSecretKey } from '@/lib/auth';
@@ -15,7 +15,7 @@ export async function POST(request) {
     }
 
     const client = await clientPromise;
-    const db = client.db();
+    const db = client.db("laurem");
 
     // Buscar usuário
     const user = await db.collection('users').findOne({ email });
@@ -39,7 +39,7 @@ export async function POST(request) {
     const token = await new SignJWT({ userId: user._id.toString(), email: user.email })
       .setProtectedHeader({ alg: 'HS256' })
       .setIssuedAt()
-      .setExpirationTime('2h')
+      .setExpirationTime('24h')
       .sign(getJwtSecretKey());
 
     // Retornar resposta sem a senha

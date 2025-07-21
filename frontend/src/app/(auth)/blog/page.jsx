@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -12,6 +9,8 @@ import {
   ChevronRightIcon,
   ArrowRightIcon,
 } from "lucide-react";
+import BlogPagination from "@/components/BlogPagination";
+import Articles from "@/components/Articles";
 
 // Exportar blogPosts para uso em outras páginas
 export const blogPosts = [
@@ -167,11 +166,13 @@ export const blogPosts = [
   },
 ];
 
-export default function BlogSection() {
-  const [visibleCount, setVisibleCount] = useState(6);
-  const handleShowMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 6, blogPosts.length));
-  };
+export default async function BlogSection() {
+
+  const fetchArticles = async () => {
+    return await fetch(process.env.NEXT_API_URL + "articles").then(data => data.json())
+  }
+
+  const articles = await fetchArticles()
 
   return (
     <section className="py-12 md:py-20 lg:py-24">
@@ -188,59 +189,8 @@ export default function BlogSection() {
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogPosts.slice(0, visibleCount).map((post) => (
-            <Card key={post.id} className="flex h-full flex-col overflow-hidden p-0 shadow-sm transition-shadow hover:shadow-md">
-              <div className="relative h-40 overflow-hidden sm:h-48 md:h-52">
-                <img
-                  src={post.imageUrl}
-                  alt={post.title}
-                  className="object-cover transition-transform duration-300 hover:scale-105 h-full w-full"
-                />
-                <div className="absolute top-3 left-3">
-                  <Badge className="bg-primary hover:bg-primary/90">
-                    {post.category}
-                  </Badge>
-                </div>
-              </div>
-              <CardContent className="flex-grow">
-                <div className="text-muted-foreground mb-2 flex items-center text-xs sm:mb-3 sm:text-sm">
-                  <CalendarIcon className="mr-1 h-3 w-3" />
-                  <span>{post.date}</span>
-                </div>
-                <h3 className="mb-2 line-clamp-2 text-base font-semibold sm:text-lg">
-                  {post.title}
-                </h3>
-                <p className="text-muted-foreground line-clamp-2 text-xs sm:line-clamp-3 sm:text-sm">
-                  {post.excerpt}
-                </p>
-              </CardContent>
-              <CardFooter className="pb-6">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full text-sm"
-                  asChild
-                >
-                  <Link
-                    href={`/blog/${post.id}`}
-                    className="flex items-center justify-center"
-                  >
-                    Ler Mais
-                    <ArrowRightIcon className="ml-1 h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-        {visibleCount < blogPosts.length && (
-          <div className="mt-8 flex justify-center">
-            <Button variant="outline" className="w-full max-w-sm" onClick={handleShowMore}>
-              Browse All Articles
-            </Button>
-          </div>
-        )}
+
+        <Articles initialArticles={articles}/> 
       </div>
     </section>
   );

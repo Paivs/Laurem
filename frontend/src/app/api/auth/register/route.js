@@ -1,4 +1,4 @@
-import clientPromise from '@/lib/mongodb';
+import {clientPromise} from '@/lib/mongodb';
 import { hashPassword, validateEmail, validatePassword } from '@/lib/authUtils';
 
 export async function POST(request) {
@@ -28,7 +28,7 @@ export async function POST(request) {
     }
 
     const client = await clientPromise;
-    const db = client.db();
+    const db = client.db("laurem");
 
     // Verificar se usuário já existe
     const existingUser = await db.collection('users').findOne({ email });

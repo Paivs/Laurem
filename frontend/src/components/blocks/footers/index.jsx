@@ -36,6 +36,7 @@ export default function Footer2({
         { text: "Aprendizado", url: "/cursos" },
         { text: "Vendas", url: "/vendas" },
         { text: "Ajuda", url: "/ajuda" },
+        { text: "Admin", url: "/auth/login" },
       ],
     },
     {

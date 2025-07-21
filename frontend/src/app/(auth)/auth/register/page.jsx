@@ -1,77 +1,68 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { toast } from "sonner";
+
+// Esquema de validação simplificado
+const registerSchema = z.object({
+  name: z.string().min(3, "Mínimo 3 caracteres"),
+  email: z.string().email("Email inválido"),
+  password: z.string().min(8, "Mínimo 8 caracteres"),
+});
 
 export default function RegisterPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+  });
 
-  const handleSubmit = async () => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-
+  const onSubmit = async (data) => {
     try {
-      const response = await fetch("/api/auth/register", {
+      const res = await fetch("/api/auth/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
 
-      const data = await response.json();
+      if (!res.ok) throw new Error(await res.text());
 
-      if (!response.ok) {
-        throw new Error(data.message || "Erro no registro");
-      }
-
+      toast.success("Conta criada!");
       router.push("/auth/login");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Ocorreu um erro");
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      toast.error("Erro no registro", {
+        description:
+          error instanceof Error ? error.message : "Erro desconhecido",
+      });
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center">
-            Criar uma conta
-          </CardTitle>
+        <CardHeader>
+          <CardTitle className="text-2xl text-center">Criar conta</CardTitle>
         </CardHeader>
 
-        <CardContent className="grid gap-4">
-          {error && (
-            <Alert variant="destructive">
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <CardContent>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Nome completo</Label>
-              <Input
-                id="name"
-                type="text"
-                placeholder="Seu nome"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+              <Label htmlFor="name">Nome</Label>
+              <Input id="name" placeholder="Seu nome" {...register("name")} />
+              {errors.name && (
+                <p className="text-sm text-red-500">{errors.name.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -79,12 +70,12 @@ export default function RegisterPage() {
               <Input
                 id="email"
                 type="email"
-                placeholder="seu@email.com"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder="email@exemplo.com"
+                {...register("email")}
               />
+              {errors.email && (
+                <p className="text-sm text-red-500">{errors.email.message}</p>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -93,26 +84,24 @@ export default function RegisterPage() {
                 id="password"
                 type="password"
                 placeholder="••••••••"
-                autoComplete="new-password"
-                minLength={8}
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register("password")}
               />
+              {errors.password && (
+                <p className="text-sm text-red-500">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
 
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Registrando..." : "Registrar"}
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? "Criando..." : "Criar conta"}
             </Button>
           </form>
 
-          <div className="text-center text-sm">
-            Já tem uma conta?{" "}
-            <Link
-              href="/auth/login"
-              className="font-medium text-primary hover:underline"
-            >
-              Faça login
+          <div className="mt-4 text-center text-sm">
+            Já tem conta?{" "}
+            <Link href="/auth/login" className="text-primary hover:underline">
+              Entrar
             </Link>
           </div>
         </CardContent>
