@@ -192,11 +192,10 @@ export default function BlogSection() {
           {blogPosts.slice(0, visibleCount).map((post) => (
             <Card key={post.id} className="flex h-full flex-col overflow-hidden p-0 shadow-sm transition-shadow hover:shadow-md">
               <div className="relative h-40 overflow-hidden sm:h-48 md:h-52">
-                <Image
+                <img
                   src={post.imageUrl}
                   alt={post.title}
-                  fill
-                  className="object-cover transition-transform duration-300 hover:scale-105"
+                  className="object-cover transition-transform duration-300 hover:scale-105 h-full w-full"
                 />
                 <div className="absolute top-3 left-3">
                   <Badge className="bg-primary hover:bg-primary/90">
