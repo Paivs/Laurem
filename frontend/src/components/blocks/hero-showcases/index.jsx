@@ -22,9 +22,9 @@ export default function HeroShowcases() {
             {/* Label with dots */}
             <div className="flex items-center space-x-3">
               <span className="bg-primary h-1.5 w-1.5 rounded-full"></span>
-              <h2 className="text-primary text-sm font-semibold tracking-wider uppercase">
+              <h1 className="text-primary text-sm font-semibold tracking-wider uppercase">
                 LAUREM
-              </h2>
+              </h1>
             </div>
 
             {/* Main heading with multi-line approach */}
