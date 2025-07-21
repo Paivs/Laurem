@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { BrainCircuit, MessageSquare, Wrench } from "lucide-react";
+import { BrainCircuit, MessageSquare, Wrench, Phone, AtSign, Globe } from "lucide-react";
 import Link from "next/link";
 
 export default function ContactSection({
@@ -34,23 +34,25 @@ export default function ContactSection({
             </div>
             <div className="mx-auto w-fit lg:mx-0">
               <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left">
-                Contact Details
+                Nossos Contatos
               </h3>
 
-              <ul className="ml-4 list-disc">
-                <li>
-                  <span className="font-bold">Telefone: </span>
+              <ul className="ml-0 list-disc">
+                <li className="flex items-center gap-2">
+                  
+                <Phone className="text-muted-foreground size-5"/>  
+                <span className="font-bold">Telefone: </span>
                   {phone}
                 </li>
-                <li>
-                  <span className="font-bold">Email: </span>
-                  <a href={`mailto:${email}`} className="underline">
+                <li className="flex items-center gap-2">
+                <AtSign className="text-muted-foreground size-5"/> <span className="font-bold">Email: </span>
+                  <a href={`mailto:${email}`} className="">
                     {email}
                   </a>
                 </li>
-                <li>
-                  <span className="font-bold">Web: </span>
-                  <a href={web.url} target="_blank" className="underline">
+                <li className="flex items-center gap-2">
+                <Globe className="text-muted-foreground size-5"/> <span className="font-bold">Web: </span>
+                  <a href={web.url} target="_blank" className="">
                     {web.label}
                   </a>
                 </li>
@@ -58,26 +60,18 @@ export default function ContactSection({
             </div>
           </div>
 
-          <div className="mx-auto flex max-w-3xl flex-col gap-6 rounded-lg border border-primary/25 p-10">
+          <div className="mx-auto flex w-[32rem] flex-col gap-6 rounded-lg border border-primary/25 p-10">
             <div className="flex gap-4">
               <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="firstname">Primeiro Nome</Label>
+                <Label htmlFor="firstname">Nome</Label>
                 <Input
                   className={"border border-primary/25"}
                   type="text"
                   id="firstname"
-                  placeholder="Escreva seu primeiro nome"
+                  placeholder="Escreva seu nome"
                 />
               </div>
-              <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="lastname">Último Nome</Label>
-                <Input
-                  className={"border border-primary/25"}
-                  type="text"
-                  id="lastname"
-                  placeholder="Escreva seu último nome"
-                />
-              </div>
+             
             </div>
             <div className="grid w-full items-center gap-1.5">
               <Label htmlFor="email">Email</Label>
