@@ -26,11 +26,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
       <body className={`${nunito.variable} ${montserrat.variable} font-sans`}>
-        <Script
-          defer
-          src="https://analytics.laurem.com.br/script.js"
-          data-website-id="09724eb3-cee1-48c8-bea1-0d28da78ec5a"
-        />
+        {!process.env.NODE_ENV && (
+          <Script
+            defer
+            src="https://analytics.laurem.com.br/script.js"
+            data-website-id="09724eb3-cee1-48c8-bea1-0d28da78ec5a"
+          />
+        )}
         <Toaster richColors position="bottom-right" />
         {children}
       </body>
