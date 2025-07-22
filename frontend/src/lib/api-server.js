@@ -15,7 +15,8 @@ async function apiFetchServer(path, options = {}) {
   };
 
   // const url = `/api/${path}`;
-  const url = `${process.env.NEXT_API_URL}api/${path}`
+  // const url = `${process.env.NEXT_API_URL}api/${path}`
+  const url = `http://localhost:3030/api/${path}`
 
   const res = await fetch(url, {
     ...fetchOptions,
