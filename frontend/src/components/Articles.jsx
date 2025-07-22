@@ -10,14 +10,6 @@ import Link from "next/link";
 
 export default function Articles({ initialArticles }) {
   const [articles, setArticles] = useState(initialArticles);
-  console.log(articles.data);
-
-  function formatarHorario(isoString) {
-    const date = new Date(isoString);
-    const horas = date.getHours().toString().padStart(2, "0");
-    const minutos = date.getMinutes().toString().padStart(2, "0");
-    return `${horas}:${minutos}`;
-  }
 
   function formatarData(dataString) {
     return new Date(dataString).toLocaleDateString("pt-BR");

@@ -1,80 +1,29 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import { blogPosts } from "../page";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { CalendarIcon } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import { toast } from "sonner";
-import { Skeleton } from "@/components/ui/skeleton";
+import { apiServer } from "@/lib/api-server";
 
-export default function BlogArticlePage() {
-  const params = useParams();
-  const { id } = params;
-  const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default async function BlogArticlePage({ params }) {
+  const searchParams = await params;
+  const { id } = searchParams;
 
-  useEffect(() => {
-    const fetchArticle = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(`/api/articles/${id}`);
-
-        if (!response.ok) {
-          throw new Error("Artigo não encontrado");
-        }
-
-        const data = await response.json();
-        setPost(data);
-        toast.success("Artigo carregado com sucesso");
-      } catch (err) {
-        setError(err.message);
-        toast.error("Erro ao carregar o artigo", {
-          description: err.message,
-        });
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchArticle();
-  }, [id]);
+  const fetchArticles = async (id) => {
+    return await apiServer.public.get(`articles/${id}`);
+  };
 
   function formatarData(dataString) {
-    return new Date(dataString).toLocaleDateString("pt-BR", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    });
+    return new Date(dataString).toLocaleDateString("pt-BR");
   }
 
-  if (loading) {
-    return (
-      <div className="container mx-auto max-w-2xl px-4 md:px-0 py-12 md:py-20 lg:py-24">
-        <div className="mb-6 flex items-center gap-2">
-          <Skeleton className="h-6 w-24 rounded-full" />
-          <Skeleton className="h-4 w-32" />
-        </div>
-        <Skeleton className="h-10 w-full mb-4" />
-        <Skeleton className="w-full h-64 md:h-96 mb-8 rounded-lg" />
-        <div className="space-y-4">
-          <Skeleton className="h-4 w-full" />
-          <Skeleton className="h-4 w-3/4" />
-          <Skeleton className="h-4 w-2/3" />
-          <Skeleton className="h-4 w-4/5" />
-        </div>
-      </div>
-    );
-  }
+  const post = await fetchArticles(id);
 
-  if (error || !post) {
+  if (!post) {
     return (
       <div className="container mx-auto py-20 px-4 text-center">
         <h1 className="text-3xl font-bold mb-4">Artigo não encontrado</h1>
-        <p className="text-muted-foreground mb-6">{error}</p>
         <Link href="/blog" className="text-primary underline">
           Voltar para o blog
         </Link>
@@ -97,29 +46,24 @@ export default function BlogArticlePage() {
         <h1 className="text-3xl md:text-4xl font-extrabold mb-4">
           {post.title}
         </h1>
-        <div className="flex flex-row gap-2 flex-wrap">
-          {post.tags.map((tag, idx) => {
-            <Badge key={idx} className="bg-primary hover:bg-primary/90">
-              {tag}
-            </Badge>;
-          })}
-        </div>
+        {post.tags.map((tag, idx) => {
+          <Badge key={idx} className="bg-primary hover:bg-primary/90">
+            {tag}
+          </Badge>;
+        })}
         <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
           <Image
             src={post.imgLink}
             alt={post.title}
             fill
             className="object-cover"
-            priority
           />
         </div>
         <article className="prose prose-lg max-w-none mb-8">
           <ReactMarkdown>{post.content}</ReactMarkdown>
+          {/* Aqui você pode adicionar mais conteúdo real do artigo se desejar */}
         </article>
-        <Link
-          href="/blog"
-          className="text-primary underline inline-flex items-center hover:text-primary/80 transition-colors"
-        >
+        <Link href="/blog" className="text-primary underline">
           ← Voltar para o blog
         </Link>
       </div>

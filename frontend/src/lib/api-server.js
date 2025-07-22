@@ -1,30 +1,32 @@
-//@/lib/api-server.js
+// @/lib/api-server.js
 import { cookies } from "next/headers";
 
 async function apiFetchServer(path, options = {}) {
-  const cookiesStore = await cookies(); 
-  const token = cookiesStore.get("token")?.value;
+  const { skipAuth = false, ...fetchOptions } = options;
+  const cookiesStore = await cookies();
+  
+  // Só busca o token se não for para pular autenticação
+  const token = skipAuth ? null : cookiesStore.get("token")?.value;
 
   const headers = {
     "Content-Type": "application/json",
-    ...(token && { Authorization: `Bearer ${token}` }),
-    ...options.headers,
+    ...(token && { Authorization: `Bearer ${token}` }), // Só adiciona Authorization se existir token
+    ...fetchOptions.headers,
   };
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/${path}`, {
-    ...options,
+  const res = await fetch(`${process.env.NEXT_API_URL}api/${path}`, {
+    ...fetchOptions,
     headers,
     cache: "no-store",
   });
 
-  if (res.status === 401) {
+  if (!skipAuth && res.status === 401) {
     // throw new UnauthorizedError();
   }
 
   const data = await res.json();
 
-  if (res.status === 403 && data?.code === "PROFILE_INCOMPLETE") {
-
+  if (!skipAuth && res.status === 403 && data?.code === "PROFILE_INCOMPLETE") {
     // throw new ProfileIncompleteError();
   }
 
@@ -45,19 +47,34 @@ async function apiFetchServer(path, options = {}) {
 }
 
 export const apiServer = {
-  get: (path) => apiFetchServer(path),
-  post: (path, body) =>
+  // Métodos normais (com token por padrão)
+  get: (path, options = {}) => apiFetchServer(path, options),
+  post: (path, body, options = {}) =>
     apiFetchServer(path, {
       method: "POST",
       body: JSON.stringify(body),
+      ...options,
     }),
-  put: (path, body) =>
+  put: (path, body, options = {}) =>
     apiFetchServer(path, {
       method: "PUT",
       body: JSON.stringify(body),
+      ...options,
     }),
-  del: (path) =>
+  del: (path, options = {}) =>
     apiFetchServer(path, {
       method: "DELETE",
+      ...options,
     }),
+
+  // Métodos sem autenticação
+  public: {
+    get: (path) => apiFetchServer(path, { skipAuth: true }),
+    post: (path, body) =>
+      apiFetchServer(path, {
+        method: "POST",
+        body: JSON.stringify(body),
+        skipAuth: true,
+      }),
+  },
 };

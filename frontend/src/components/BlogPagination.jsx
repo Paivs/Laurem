@@ -11,13 +11,23 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export default function BlogPagination({ totalItems, itemsPerPage }) {
+export default function BlogPagination({ articles, setArticles }) {
+  const totalItems = articles.pagination.total;
+  const itemsPerPage = articles.pagination.limit;
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const currentPage = Number(searchParams.get("page")) || 1;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  async function fetchData() {
+    const response = await fetch(
+      process.env.NEXT_API_URL + "articles" + "?page=" + currentPage
+    ).then((data) => data.json());
+
+    setArticles(response);
+  }
 
   const createPageURL = (pageNumber) => {
     const params = new URLSearchParams(searchParams);

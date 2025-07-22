@@ -3,7 +3,7 @@ import Subscribe from "../subscribe";
 
 export default function Footer2({
   logo = {
-    src: "/img/logo.svg",
+    src: "/img/logo.png",
     alt: "Logo da empresa Laurem",
     title: "laurem.com.br",
     url: "https://www.laurem.com.br",
