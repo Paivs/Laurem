@@ -236,7 +236,7 @@ export default function NavBar() {
                     >
                       <Button
                         variant={"ghost"}
-                        className={`text-foreground hover:text-primary flex-row p-2 items-center gap-2 py-1.5 text-lg font-medium`}
+                        className={`text-foreground hover:text-primary flex-row p-2 items-center gap-2 py-1.5 font-medium`}
                       >
                         <ListPlus
                           size={16}
