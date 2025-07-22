@@ -20,17 +20,17 @@ export default function HeroShowcases() {
         <div className="flex flex-col justify-center md:col-span-3 md:pr-6 xl:pr-12">
           <div className="space-y-6 md:space-y-8">
             {/* Label with dots */}
-            <div className="flex items-center space-x-3">
-              <span className="bg-primary h-1.5 w-1.5 rounded-full"></span>
-              <h1 className="text-primary text-sm font-semibold tracking-wider uppercase">
+            <div className="hidden sm:flex items-center space-x-3">
+              {/* <span className="bg-primary h-1.5 w-1.5 rounded-full"></span> */}
+              <h1 className="text-primary text-sm font-semibold tracking-wider uppercase hidden">
                 LAUREM
               </h1>
             </div>
 
             {/* Main heading with multi-line approach */}
-            <h1 className="scroll-m-20 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              <span className="block">Tecnologia que serve você, </span>
-              <span className="text-primary mt-1 block">não o contrário.</span>
+            <h1 className="scroll-m-20 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl text-center  lg:text-left">
+              <span className="">Tecnologia que serve você, </span>
+              <span className="text-primary mt-1">não o contrário.</span>
             </h1>
 
             {/* Description text */}
@@ -41,10 +41,10 @@ export default function HeroShowcases() {
 
             {/* Featured clients section */}
             <div className="pt-2">
-              <p className="text-muted-foreground mb-3 text-sm font-medium">
+              <p className="text-muted-foreground mb-3 text-sm font-medium text-center md:text-left underline text-primary">
                 GUIADOS POR
               </p>
-              <div className="flex flex-wrap items-center gap-6">
+              <div className="flex flex-wrap items-center gap-6 justify-center md:justify-normal">
                 <div className="text-muted-foreground/70 hover:text-foreground font-semibold transition-colors">
                   LIBERDADE
                 </div>
