@@ -7,6 +7,8 @@ export default async function BlogSection({ searchParams }) {
 
   // Busca os artigos com tratamento de erro
   const articles = await apiServer.public.get(`articles?page=${currentPage}`);
+  console.log(articles);
+  
 
   return (
     <section className="py-12 md:py-20 lg:py-24">
