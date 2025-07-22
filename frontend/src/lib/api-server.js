@@ -16,7 +16,7 @@ async function apiFetchServer(path, options = {}) {
 
   // const url = `/api/${path}`;
   // const url = `${process.env.NEXT_API_URL}api/${path}`
-  const url = `/api/${path}`
+  const url = `${NEXT_CONTAINER_URL}api/${path}`
 
   const res = await fetch(url, {
     ...fetchOptions,
