@@ -1,9 +1,15 @@
+
 import ModernHero from "@/components/blocks/modern-hero";
+import SimplePageHeading from "@/components/blocks/page-headings";
+import FeatureDev from "@/components/blocks/service-02";
 
 export default function ServicosPage() {
   return (
     <main>
       <ModernHero />
+
+      <SimplePageHeading title="Conheça nossos serviços" description="Desenvolvimento de software, hospedagem, implementação, manutenção e suporte. Operamos com backups e práticas de segurança" />
+      <FeatureDev />
 
       <section className="container py-12 md:py-20 lg:py-24">
         <div className="mb-12 text-center">

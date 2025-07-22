@@ -25,8 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
       <body className={`${nunito.variable} ${montserrat.variable} font-sans`}>
-        <Toaster richColors position="top-center" />
-
+        <Toaster richColors position="bottom-right" />
         {children}
       </body>
     </html>

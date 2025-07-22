@@ -37,11 +37,7 @@ export default function LoginPage() {
         throw new Error(data.message || 'Erro no login');
       }
 
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-      }
-
-      router.push('/dashboard');
+      router.push('/admin/');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Ocorreu um erro');
     } finally {
