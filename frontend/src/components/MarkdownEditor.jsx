@@ -28,6 +28,8 @@ import { z } from "zod";
 import ReactMarkdown from "react-markdown";
 import slugify from "slugify";
 import { toast } from "sonner";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 
 const articleSchema = z.object({
   title: z.string().min(5, "Mínimo 5 caracteres"),
@@ -215,7 +217,7 @@ export default function ArticleEditor({ initialData = {} }) {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="Inovação">Inovação</SelectItem>
+                  <SelectItem value="Soberania Digital">Soberania Digital</SelectItem>
                   <SelectItem value="DevOps">DevOps</SelectItem>
                   <SelectItem value="Frontend">Frontend</SelectItem>
                   <SelectItem value="Backend">Backend</SelectItem>
@@ -282,7 +284,10 @@ export default function ArticleEditor({ initialData = {} }) {
           <div className="grow rounded-md border p-4">
             <h3 className="mb-2 text-sm font-medium">Preview</h3>
             <div className="prose max-w-none">
-              <ReactMarkdown>
+              <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeHighlight]}
+              >
                 {watch("content") || "*Nada para pré-visualizar*"}
               </ReactMarkdown>
             </div>

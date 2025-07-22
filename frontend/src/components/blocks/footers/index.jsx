@@ -43,7 +43,7 @@ export default function Footer2({
       title: "Redes",
       links: [
         { text: "Instagram", url: "https://instagram.com/" },
-        { text: "LinkedIn", url: "https://linkedin.com/" },
+        { text: "LinkedIn", url: "https://www.linkedin.com/company/laurem-technology" },
       ],
     },
   ],

@@ -158,10 +158,6 @@ export default function NavBar() {
                   {" "}
                   <Link href="/cursos">Aprenda conosco</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  {" "}
-                  <Link href="/principios">Principios</Link>
-                </DropdownMenuItem>
                 <DropdownMenuSeparator/>
                 <DropdownMenuItem>
                   {" "}

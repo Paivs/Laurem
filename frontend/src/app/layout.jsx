@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
       <body className={`${nunito.variable} ${montserrat.variable} font-sans`}>
-        {!process.env.NODE_ENV != "development" && (
+        {process.env.NODE_ENV != "development" && (
           <Script
             defer
             src="https://analytics.laurem.com.br/script.js"

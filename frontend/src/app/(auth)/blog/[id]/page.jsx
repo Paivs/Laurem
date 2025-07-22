@@ -5,6 +5,8 @@ import { CalendarIcon } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import { apiServer } from "@/lib/api-server";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 
 export default async function BlogArticlePage({ params }) {
   const searchParams = await params;
@@ -60,7 +62,12 @@ export default async function BlogArticlePage({ params }) {
           />
         </div>
         <article className="prose prose-lg max-w-none mb-8">
-          <ReactMarkdown>{post.content}</ReactMarkdown>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeHighlight]}
+          >
+            {post.content}
+          </ReactMarkdown>
           {/* Aqui você pode adicionar mais conteúdo real do artigo se desejar */}
         </article>
         <Link href="/blog" className="text-primary underline">
