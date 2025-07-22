@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Check, ChevronRight, FileText } from "lucide-react";
+import { Check, ChevronRight, MessageSquare } from "lucide-react";
 import Link from "next/link";
 
 export default function ModernHero() {
@@ -11,39 +11,39 @@ export default function ModernHero() {
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-10 lg:flex-row lg:gap-20 items-center">
           <div className="mx-auto flex max-w-xl flex-col justify-between gap-10">
             <div>
-              <h1 className="mb-2 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-primary">
-                Construa interfaces
-                <br />
-                melhores com
-                <br />
-                componentes modernos
+              <h1 className="mb-2 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-5xl lg:text-5xl text-primary">
+                Transforme seu negócio com sistemas sob medida
               </h1>
               <p className="mt-6 max-w-3xl text-lg sm:text-xl text-muted-foreground">
-                Uma biblioteca de componentes profissionais para criar aplicações bonitas, responsivas e alinhadas à sua marca.
+                Oferecemos um ciclo de vida completo para suas aplicações: da criação de novos sistemas à manutenção e modernização de código legado, garantindo performance e segurança.
               </p>
               <ul className="mt-8 space-y-3 text-base sm:text-lg text-muted-foreground">
                 <li className="flex items-center">
                   <Check className="mr-3 h-5 w-5 flex-shrink-0 text-primary" />
-                  <span>Componentes personalizáveis para qualquer design system</span>
+                  <span>Desenvolvimento de sistemas e aplicações web personalizadas.</span>
                 </li>
                 <li className="flex items-center">
                   <Check className="mr-3 h-5 w-5 flex-shrink-0 text-primary" />
-                  <span>Suporte a dark mode nativo</span>
+                  <span>Manutenção e atualização de sites e sistemas existentes.</span>
                 </li>
                 <li className="flex items-center">
                   <Check className="mr-3 h-5 w-5 flex-shrink-0 text-primary" />
-                  <span>Feito com TypeScript e totalmente acessível</span>
+                  <span>Modernização e reescrita de sistemas legados.</span>
+                </li>
+                 <li className="flex items-center">
+                  <Check className="mr-3 h-5 w-5 flex-shrink-0 text-primary" />
+                  <span>Hospedagem e suporte contínuo para suas aplicações.</span>
                 </li>
               </ul>
               <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
                 <Button size="lg" asChild className="w-full sm:w-auto">
-                  <Link href="#">
-                    Começar <ChevronRight className="ml-2 h-5 w-5" />
+                  <Link href="/projetos">
+                    Nossos Projetos <ChevronRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
-                  <Link href="#">
-                    Ver documentação <FileText className="ml-2 h-5 w-5" />
+                  <Link href="/contato">
+                    Fale Conosco <MessageSquare className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
               </div>
