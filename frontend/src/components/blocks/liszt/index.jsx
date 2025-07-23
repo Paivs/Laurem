@@ -80,7 +80,7 @@ function Liszt({
           <div className="grid gap-8 md:grid-cols-2">
             <div className="group flex flex-col justify-between gap-6 rounded-lg bg-muted p-6 shadow-sm transition-all duration-300 hover:shadow-md md:p-8">
               <div className="overflow-hidden rounded-md">
-                <Image
+                <img
                   src={visionImageSrc}
                   alt={visionImageAlt}
                   width={500}

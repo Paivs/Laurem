@@ -87,7 +87,7 @@ function Neuman({
             </div>
           </div>
           <div className="relative overflow-hidden rounded-lg shadow-sm">
-            <Image
+            <img
               src={missionImageSrc}
               alt={missionImageAlt}
               width={500}
