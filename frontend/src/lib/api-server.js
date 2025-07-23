@@ -13,10 +13,13 @@ async function apiFetchServer(path, options = {}) {
     ...(token && { Authorization: `Bearer ${token}` }), // Só adiciona Authorization se existir token
     ...fetchOptions.headers,
   };
+  const url = `${process.env.NEXT_API_URL}api/${path}`;
 
-  // const url = `/api/${path}`;
-  // const url = `${process.env.NEXT_API_URL}api/${path}`
-  const url = `${NEXT_CONTAINER_URL}api/${path}`
+  console.log(`Fetching URL: ${url} with options:`, {
+    method: fetchOptions.method || "GET",
+    headers,
+    body: fetchOptions.body,
+  });
 
   const res = await fetch(url, {
     ...fetchOptions,

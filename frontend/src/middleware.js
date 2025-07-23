@@ -1,8 +1,6 @@
 // middleware.ts
 import { NextResponse } from "next/server";
-import { verify } from "jsonwebtoken";
-
-const JWT_SECRET = process.env.JWT_SECRET;
+import { verifyToken } from "@/lib/auth";
 
 // Configuração de rotas e métodos
 const routeConfig = {
@@ -44,14 +42,13 @@ export async function middleware(request) {
   // 1. Verificar rotas públicas
   const isPublic = routeConfig.publicRoutes.some(route => {
     if (route.includes(":")) {
-      // Rota com métodos específicos liberados
       return isRouteMatch(route);
     }
     // Rota completamente pública
     return pathname === route || pathname.startsWith(`${route}/`);
   });
 
-  if (isPublic) {
+  if (isPublic) { 
     return NextResponse.next();
   }
 
@@ -61,8 +58,7 @@ export async function middleware(request) {
   }
 
   try {
-    // 3. Verificar JWT
-    const decoded = verify(token, JWT_SECRET);
+    const decoded = verifyToken(token);
 
     // 4. Verificar expiração
     if (Date.now() >= decoded.exp * 1000) {
@@ -74,7 +70,7 @@ export async function middleware(request) {
       pathname === route || pathname.startsWith(`${route}/`)
     );
 
-    if (isAdminRoute && decoded.perfil !== "admin") {
+    if (isAdminRoute && !decoded) {
       const unauthorizedUrl = new URL("/unauthorized", request.url);
       return NextResponse.redirect(unauthorizedUrl);
     }
