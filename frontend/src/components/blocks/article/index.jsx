@@ -69,7 +69,7 @@ function BlogSingle1({
     <section className="py-32">
       <div className="max-w-7xl mx-auto px-4">
         <div className="relative mb-12 h-[600px] overflow-hidden">
-          <Image
+          <img
             src={coverImage}
             alt="Imagem de capa do post"
             width={1200}
