@@ -8,6 +8,7 @@ import { apiServer } from "@/lib/api-server";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { Button } from "@/components/ui/button";
+import { BlogSingle1 } from "@/components/blocks/article";
 
 export default async function BlogArticlePage({ params }) {
   const searchParams = await params;
@@ -37,63 +38,44 @@ export default async function BlogArticlePage({ params }) {
   return (
     <>
       <div className="w-full absolute min-h-56 bg-primary z-0"></div>
-      <section className="relative py-20 lg:py-24">
-        <div className="container mx-auto max-w-5xl px-4 md:px-0 z-50">
-          <div className="mb-6 flex items-center gap-2">
-            <Badge className="bg-white text-primary font-bold hover:bg-primary/90">
-              {post.category}
-            </Badge>
-            <span className="flex items-center text-white text-xs">
-              <CalendarIcon className="mr-1 h-3 w-3" />
-              {formatarData(post.updatedAt)}
-            </span>
+      <BlogSingle1
+        articleUrl={`https://laurem.com.br/blog/${id}`}
+        shareText={post.description}
+        coverImage={post.imgLink}
+        title={post.title}
+        author={{
+          name: "Gustavo Paiva",
+          avatarSrc: "/img/paiva.jpeg",
+          initials: "JS",
+          role: "Desenvolvedor Fullstack",
+          bio: "Desenvolvedor, Analista e Instrutor de Formação Profissional",
+        }}
+        date={formatarData(post.updatedAt)}
+        tags={post.tags}
+        content={post.content}
+        relatedArticles={[]}
+      />
+      <div className="mx-auto max-w-7xl px-4 md:px-0 z-50">
+        <div className="rounded border border-border bg-primary text-secondary p-4 my-2">
+          <div className="flex flex-row gap-2 items-center justify-start">
+            <Quote />
+            <p className="italic">
+              Soluções digitais devem resolver problemas reais, facilitar a vida
+              e tornar a tecnologia acessível. O propósito humano sempre foi
+              ampliar nossa independência.
+            </p>
           </div>
-          <h1 className="text-3xl md:text-4xl text-white font-extrabold mb-4">
-            {post.title}
-          </h1>
-          {post.tags.map((tag, idx) => {
-            <Badge key={idx} className="bg-primary hover:bg-primary/90">
-              {tag}
-            </Badge>;
-          })}
-          <div className="relative w-full h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
-            <img
-              src={post.imgLink}
-              alt={post.title}
-              className="object-cover w-full h-full"
-            />
+          <div className="flex flex-col mt-2">
+            <span className="text-base text-muted-secondary">- Laurem</span>
           </div>
-          <article className="mb-8">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeHighlight]}
-            >
-              {post.content}
-            </ReactMarkdown>
-            {/* Aqui você pode adicionar mais conteúdo real do artigo se desejar */}
-          </article>
-
-          <div className="rounded border border-border bg-primary text-secondary p-4 my-2">
-            <div className="flex flex-row gap-2 items-center justify-start">
-              <Quote />
-              <p className="italic">
-                Soluções digitais devem resolver problemas reais, facilitar a
-                vida e tornar a tecnologia acessível. O propósito humano guia
-                sempre foi ampliar nossa independência.
-              </p>
-            </div>
-            <div className="flex flex-col mt-2">
-              <span className="text-base text-muted-secondary">- Laurem</span>
-            </div>
-          </div>
-
-          <Button asChild>
-            <Link href="/blog" className="">
-              <ArrowBigLeft /> Voltar para o blog
-            </Link>
-          </Button>
         </div>
-      </section>
+
+        <Button asChild>
+          <Link href="/blog" className="">
+            <ArrowBigLeft /> Voltar para o blog
+          </Link>
+        </Button>
+      </div>
     </>
   );
 }
