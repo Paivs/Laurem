@@ -30,7 +30,7 @@ import {
 const companyValues = [
   {
     id: "soberania-digital-autonomia",
-    name: "Soberania Digital e Autonomia",
+    name: "Soberania e Autonomia",
     icon: Key,
     description:
       "Acreditamos que você deve ter o controle total sobre seus dados e ferramentas. Nossas soluções são projetadas para libertá-lo de ecossistemas fechados e dependências de grandes corporações (Big Techs), permitindo que você hospede, modifique e utilize o software como quiser.",
@@ -54,7 +54,7 @@ const companyValues = [
   },
   {
     id: "etica-privacidade",
-    name: "Ética e Privacidade por Design",
+    name: "Ética e Privacidade",
     icon: ShieldCheck,
     description:
       "Nossa tecnologia é construída com base no respeito ao usuário. Isso significa total privacidade dos seus dados, transparência em nossas práticas e um compromisso de que a tecnologia deve servir a você, e não o contrário.",
@@ -78,7 +78,7 @@ const companyValues = [
   },
   {
     id: "usabilidade-simplicidade",
-    name: "Usabilidade e Foco no Essencial",
+    name: "Usabilidade",
     icon: Lightbulb,
     description:
       "Criamos ferramentas poderosas que são intuitivas e fáceis de usar. Focamos em funcionalidades essenciais que resolvem problemas reais, sem complexidade desnecessária, para que você possa se concentrar no que realmente importa: seu trabalho.",
@@ -102,7 +102,7 @@ const companyValues = [
   },
   {
     id: "comunidade-codigo-aberto",
-    name: "Comunidade e Código Aberto",
+    name: "Colaboração e Código Aberto",
     icon: Users2,
     description:
       "Acreditamos que a colaboração nos fortalece. Nossos projetos são de código aberto para incentivar a contribuição, o feedback e a criação conjunta. A comunidade é o coração da LAUREM, onde todos podem aprender, compartilhar e crescer juntos.",
