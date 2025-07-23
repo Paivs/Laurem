@@ -6,7 +6,7 @@ export default async function BlogSection({ searchParams }) {
   const currentPage = parseInt(params.page || "1");
 
   // Busca os artigos com tratamento de erro
-  const articles = await apiServer.public.get(`/articles?page=${currentPage}`);
+  const articles = await apiServer.public.get(`articles?page=${currentPage}`);
   console.log(articles);
   
 
