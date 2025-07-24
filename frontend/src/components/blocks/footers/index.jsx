@@ -15,8 +15,8 @@ export default function Footer2({
     {
       title: "Produtos",
       links: [
-        { text: "Liszt - Para terapeutas", url: "/projetos/#liszt" },
-        { text: "Neuman - Para advogados", url: "/projetos/#neuman" },
+        { text: "Liszt - Para terapeutas", url: "/projetos" },
+        { text: "Neuman - Para advogados", url: "/projetos" },
         { text: "Planos e Preços", url: "/vendas" },
       ],
     },
