@@ -1,5 +1,6 @@
 import { Logo, LogoImage, LogoText } from "@/components/shadcnblocks/logo";
 import Subscribe from "../subscribe";
+import Link from "next/link";
 
 export default function Footer2({
   logo = {
@@ -85,7 +86,7 @@ export default function Footer2({
                         key={linkIdx}
                         className="hover:text-primary font-medium"
                       >
-                        <a href={link.url}>{link.text}</a>
+                        <Link href={link.url}>{link.text}</Link>
                       </li>
                     ))}
                   </ul>
@@ -94,11 +95,14 @@ export default function Footer2({
             </div>
           </div>
           <div className="text-muted-foreground mt-16 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium md:flex-row md:items-center">
-            <p>{copyright}</p>
+            <p>{copyright} 
+              {" "}Ilustrações: <Link className="underline" href={"https://popsy.co/"}>Popsy</Link>
+            </p>
+            
             <ul className="flex gap-4">
               {bottomLinks.map((link, linkIdx) => (
                 <li key={linkIdx} className="hover:text-primary underline">
-                  <a href={link.url}>{link.text}</a>
+                  <Link href={link.url}>{link.text}</Link>
                 </li>
               ))}
             </ul>
