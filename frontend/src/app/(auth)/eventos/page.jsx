@@ -1,11 +1,17 @@
+"use client"
 import Events from "@/components/blocks/events";
 import SimplePageHeading from "@/components/blocks/page-headings";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import HeroEvents from "@/components/blocks/hero-events";
+import Cta from "@/components/blocks/cta/cta";
 
 export default function Eventos() {
   return (
     <>
+      <section className="pt-14 md:pt-0">
+        <HeroEvents />
+      </section>
       <div className="pt-12">
         <SimplePageHeading
           title="Participe dos Eventos e Atividades da Laurem"
@@ -22,6 +28,7 @@ export default function Eventos() {
       </div>
 
       <Events />
+      <Cta />
     </>
   );
 }

@@ -94,7 +94,7 @@ const events = [
 
 export default function Events() {
   return (
-    <section className="bg-background py-16 md:py-24">
+    <section className="bg-background py-16 md:py-24" id="events">
       <div className="container mx-auto px-4 2xl:max-w-[1400px]">
         {/* Cabeçalho da seção */}
         <div className="mb-12 text-center md:mb-16">
