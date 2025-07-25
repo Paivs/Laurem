@@ -8,7 +8,7 @@ async function apiFetchClient(path, options = {}) {
     ...fetchOptions.headers,
   };
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_API_URL}api/${path}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_API_URL}/api/${path}`, {
     ...fetchOptions,
     headers,
     cache: "no-store",

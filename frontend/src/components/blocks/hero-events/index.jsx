@@ -61,7 +61,7 @@ export default function HeroShowcases() {
 
             {/* Featured clients section */}
             <div className="pt-2">
-              <p className="text-muted-foreground mb-3 text-sm font-medium text-center md:text-left underline text-primary">
+              <p className="mb-3 text-sm font-medium text-center md:text-left underline text-muted-foreground">
                 NOSSOS DIFERENCIAIS
               </p>
               <div className="flex flex-wrap items-center gap-6 justify-center md:justify-normal">
