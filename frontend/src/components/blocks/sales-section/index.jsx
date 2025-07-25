@@ -348,7 +348,7 @@ export default function SalesSection({
 function ServiceCard({ icon, title, description, linkText, href }) {
   return (
     <Link
-      href={href}
+      href={"#"}
       className="group rounded-xl bg-white p-6 shadow-sm transition-all hover:shadow-md hover:ring-2 hover:ring-primary"
     >
       <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-secondary">

@@ -65,7 +65,7 @@ export default function NavBar() {
     { href: "/contato", label: "Contatos" },
     { href: "/vendas", label: "Vendas" },
     { href: "/sobre", label: "Sobre" },
-    { href: "/cursos", label: "Aprenda conosco" },
+    // { href: "/cursos", label: "Aprenda conosco" },
     { href: "/auth/login", label: "Admin" },
   ];
 

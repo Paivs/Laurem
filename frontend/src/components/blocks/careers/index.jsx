@@ -34,120 +34,171 @@ import {
 
 export default function Vagas() {
   // Dados de exemplo para vagas
+  // const vagas = [
+  //   {
+  //     id: "senior-frontend-engineer",
+  //     titulo: "Engenheiro Frontend Sênior",
+  //     departamento: "Engenharia",
+  //     empresa: "Laurem",
+  //     logoEmpresa: "https://cdn.worldvectorlogo.com/logos/react-2.svg",
+  //     localizacao: "São Paulo - SP SP",
+  //     tipoLocal: "remoto",
+  //     tipoEmprego: "tempo-integral",
+  //     nivelExperiencia: "sênior",
+
+  //     salario: "R$ 1300,00",
+  //     descricao:
+  //       "Liderar o desenvolvimento do nosso produto principal usando React, TypeScript e tecnologias web modernas. Junte-se a uma equipe talentosa trabalhando em soluções inovadoras.",
+  //     destaque: true,
+  //     tipoDestaque: "competitivo",
+  //     beneficios: [
+  //       "Horário flexível",
+  //       "Opção remota",
+  //       "Plano de saúde",
+  //       "Previdência privada",
+  //       "Orçamento para aprendizagem",
+  //     ],
+  //   },
+  //   {
+  //     id: "product-manager",
+  //     titulo: "Gerente de Produto",
+  //     departamento: "Produto",
+  //     empresa: "Laurem",
+  //     logoEmpresa:
+  //       "https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg",
+  //     localizacao: "São Paulo - SP, RJ",
+  //     tipoLocal: "remoto",
+  //     tipoEmprego: "tempo-integral",
+  //     nivelExperiencia: "sênior",
+
+  //     salario: "R$ 1200,00",
+  //     descricao:
+  //       "Definir a visão e estratégia do produto para nossa plataforma SaaS. Colaborar com equipes multifuncionais para entregar experiências excepcionais aos usuários.",
+  //     destaque: true,
+  //     tipoDestaque: "novo",
+  //     beneficios: [
+  //       "Férias ilimitadas",
+  //       "Benefícios de saúde",
+  //       "Opção remota",
+  //       "Participação nos lucros",
+  //       "Refeições no local",
+  //     ],
+  //   },
+  //   {
+  //     id: "senior-data-scientist",
+  //     titulo: "Cientista de Dados Sênior",
+  //     departamento: "Ciência de Dados",
+  //     empresa: "Laurem",
+  //     logoEmpresa: "https://cdn.worldvectorlogo.com/logos/python-5.svg",
+  //     localizacao: "São Paulo - SP: ",
+  //     tipoLocal: "remoto",
+  //     tipoEmprego: "tempo-integral",
+  //     nivelExperiencia: "sênior",
+
+  //     salario: "R$ 1400,00",
+  //     descricao:
+  //       "Aplicar técnicas de machine learning e estatística para resolver problemas complexos de negócios. Trabalhar com grandes conjuntos de dados para extrair insights e impulsionar a tomada de decisões.",
+  //     destaque: true,
+  //     tipoDestaque: "em-alta",
+  //     beneficios: [
+  //       "Cultura remota-first",
+  //       "Horário flexível",
+  //       "Retiros trimestrais",
+  //       "Auxílio saúde & bem-estar",
+  //       "Orçamento para home office",
+  //     ],
+  //   },
+  //   {
+  //     id: "software-architect",
+  //     titulo: "Arquiteto de Software",
+  //     departamento: "Engenharia",
+  //     empresa: "Laurem",
+  //     logoEmpresa: "https://cdn.worldvectorlogo.com/logos/aws-2.svg",
+  //     localizacao: "São Paulo - SP MG",
+  //     tipoLocal: "remoto",
+  //     tipoEmprego: "tempo-integral",
+  //     nivelExperiencia: "lider",
+
+  //     salario: "R$ 1600,00",
+  //     descricao:
+  //       "Projetar e liderar o desenvolvimento de aplicações escaláveis e nativas na nuvem. Dirigir decisões técnicas e mentorar engenheiros juniores nas melhores práticas.",
+  //     destaque: true,
+  //     tipoDestaque: "competitivo",
+  //     beneficios: [
+  //       "Salário competitivo",
+  //       "Participação nos lucros",
+  //       "Previdência privada",
+  //       "Plano de saúde completo",
+  //       "Orçamento para desenvolvimento profissional",
+  //     ],
+  //   },
+  //   {
+  //     id: "ux-design-lead",
+  //     titulo: "Líder de UX Design",
+  //     departamento: "Design",
+  //     empresa: "Laurem",
+  //     logoEmpresa: "https://cdn.worldvectorlogo.com/logos/adobe-2.svg",
+  //     localizacao: "São Paulo - SP RS",
+  //     tipoLocal: "remoto",
+  //     tipoEmprego: "tempo-integral",
+  //     nivelExperiencia: "lider",
+
+  //     salario: "R$ 1300,00",
+  //     descricao:
+  //       "Liderar uma equipe de designers para criar experiências de usuário intuitivas e envolventes. Colaborar com equipes de produto e engenharia para entregar produtos coesos.",
+  //     destaque: true,
+  //     tipoDestaque: "popular",
+  //     beneficios: [
+  //       "Ambiente de estúdio criativo",
+  //       "Ferramentas de design atualizadas",
+  //       "Plano de saúde",
+  //       "Assinatura de academia",
+  //       "Vestuário casual",
+  //     ],
+  //   },
+  //   {
+  //     id: "backend-engineer",
+  //     titulo: "Engenheiro Backend",
+  //     departamento: "Engenharia",
+  //     empresa: "Laurem",
+  //     logoEmpresa: "https://cdn.worldvectorlogo.com/logos/nodejs-1.svg",
+  //     localizacao: "São Paulo - SP",
+  //     tipoLocal: "remoto",
+  //     tipoEmprego: "tempo-integral",
+  //     nivelExperiencia: "pleno",
+
+  //     salario: "R$ 1150.000",
+  //     descricao:
+  //       "Desenvolver serviços e APIs backend escaláveis usando tecnologias modernas. Colaborar com equipes frontend para integrar interfaces de usuário.",
+  //     destaque: true,
+  //     tipoDestaque: "novo",
+  //     beneficios: [
+  //       "Horário flexível",
+  //       "Opção remota",
+  //       "Plano de saúde",
+  //       "Programa de bem-estar",
+  //       "Desenvolvimento profissional",
+  //     ],
+  //   },
+  // ];
+
   const vagas = [
     {
-      id: "senior-frontend-engineer",
-      titulo: "Engenheiro Frontend Sênior",
-      departamento: "Engenharia",
-      empresa: "Laurem",
-      logoEmpresa: "https://cdn.worldvectorlogo.com/logos/react-2.svg",
-      localizacao: "São Paulo - SP SP",
-      tipoLocal: "remoto",
-      tipoEmprego: "tempo-integral",
-      nivelExperiencia: "sênior",
-
-      salario: "R$ 1300,00",
-      descricao:
-        "Liderar o desenvolvimento do nosso produto principal usando React, TypeScript e tecnologias web modernas. Junte-se a uma equipe talentosa trabalhando em soluções inovadoras.",
-      destaque: true,
-      tipoDestaque: "competitivo",
-      beneficios: [
-        "Horário flexível",
-        "Opção remota",
-        "Plano de saúde",
-        "Previdência privada",
-        "Orçamento para aprendizagem",
-      ],
-    },
-    {
-      id: "product-manager",
-      titulo: "Gerente de Produto",
-      departamento: "Produto",
-      empresa: "Laurem",
-      logoEmpresa:
-        "https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg",
-      localizacao: "São Paulo - SP, RJ",
-      tipoLocal: "remoto",
-      tipoEmprego: "tempo-integral",
-      nivelExperiencia: "sênior",
-
-      salario: "R$ 1200,00",
-      descricao:
-        "Definir a visão e estratégia do produto para nossa plataforma SaaS. Colaborar com equipes multifuncionais para entregar experiências excepcionais aos usuários.",
-      destaque: true,
-      tipoDestaque: "novo",
-      beneficios: [
-        "Férias ilimitadas",
-        "Benefícios de saúde",
-        "Opção remota",
-        "Participação nos lucros",
-        "Refeições no local",
-      ],
-    },
-    {
-      id: "senior-data-scientist",
-      titulo: "Cientista de Dados Sênior",
-      departamento: "Ciência de Dados",
-      empresa: "Laurem",
-      logoEmpresa: "https://cdn.worldvectorlogo.com/logos/python-5.svg",
-      localizacao: "São Paulo - SP: ",
-      tipoLocal: "remoto",
-      tipoEmprego: "tempo-integral",
-      nivelExperiencia: "sênior",
-
-      salario: "R$ 1400,00",
-      descricao:
-        "Aplicar técnicas de machine learning e estatística para resolver problemas complexos de negócios. Trabalhar com grandes conjuntos de dados para extrair insights e impulsionar a tomada de decisões.",
-      destaque: true,
-      tipoDestaque: "em-alta",
-      beneficios: [
-        "Cultura remota-first",
-        "Horário flexível",
-        "Retiros trimestrais",
-        "Auxílio saúde & bem-estar",
-        "Orçamento para home office",
-      ],
-    },
-    {
-      id: "software-architect",
-      titulo: "Arquiteto de Software",
-      departamento: "Engenharia",
-      empresa: "Laurem",
-      logoEmpresa: "https://cdn.worldvectorlogo.com/logos/aws-2.svg",
-      localizacao: "São Paulo - SP MG",
-      tipoLocal: "remoto",
-      tipoEmprego: "tempo-integral",
-      nivelExperiencia: "lider",
-
-      salario: "R$ 1600,00",
-      descricao:
-        "Projetar e liderar o desenvolvimento de aplicações escaláveis e nativas na nuvem. Dirigir decisões técnicas e mentorar engenheiros juniores nas melhores práticas.",
-      destaque: true,
-      tipoDestaque: "competitivo",
-      beneficios: [
-        "Salário competitivo",
-        "Participação nos lucros",
-        "Previdência privada",
-        "Plano de saúde completo",
-        "Orçamento para desenvolvimento profissional",
-      ],
-    },
-    {
-      id: "ux-design-lead",
-      titulo: "Líder de UX Design",
+      id: "ux-design-junior",
+      titulo: "Designer UX Júnior",
       departamento: "Design",
       empresa: "Laurem",
       logoEmpresa: "https://cdn.worldvectorlogo.com/logos/adobe-2.svg",
-      localizacao: "São Paulo - SP RS",
+      localizacao: "São Paulo - SP",
       tipoLocal: "remoto",
-      tipoEmprego: "tempo-integral",
-      nivelExperiencia: "lider",
+      tipoEmprego: "PJ",
+      nivelExperiencia: "junior",
 
-      salario: "R$ 1300,00",
+      salario: "R$ 2.500,00",
       descricao:
-        "Liderar uma equipe de designers para criar experiências de usuário intuitivas e envolventes. Colaborar com equipes de produto e engenharia para entregar produtos coesos.",
-      destaque: true,
-      tipoDestaque: "popular",
+        "Auxiliar na criação de experiências de usuário intuitivas, participando do processo de design junto a equipes multidisciplinares e aprendendo boas práticas do mercado.",
+      destaque: false,
+      tipoDestaque: null,
       beneficios: [
         "Ambiente de estúdio criativo",
         "Ferramentas de design atualizadas",
@@ -157,21 +208,21 @@ export default function Vagas() {
       ],
     },
     {
-      id: "backend-engineer",
-      titulo: "Engenheiro Backend",
+      id: "frontend-engineer-junior",
+      titulo: "Engenheiro Frontend Júnior",
       departamento: "Engenharia",
       empresa: "Laurem",
       logoEmpresa: "https://cdn.worldvectorlogo.com/logos/nodejs-1.svg",
       localizacao: "São Paulo - SP",
       tipoLocal: "remoto",
-      tipoEmprego: "tempo-integral",
-      nivelExperiencia: "pleno",
+      tipoEmprego: "PJ",
+      nivelExperiencia: "junior",
 
-      salario: "R$ 1150.000",
+      salario: "R$ 3.200,00",
       descricao:
-        "Desenvolver serviços e APIs backend escaláveis usando tecnologias modernas. Colaborar com equipes frontend para integrar interfaces de usuário.",
-      destaque: true,
-      tipoDestaque: "novo",
+        "Desenvolver interfaces e colaborar com o time frontend, auxiliando na implementação de funcionalidades e na manutenção do código sob supervisão de profissionais mais experientes.",
+      destaque: false,
+      tipoDestaque: null,
       beneficios: [
         "Horário flexível",
         "Opção remota",
@@ -363,17 +414,17 @@ export default function Vagas() {
               </CarouselItem>
             );
           })}
+          {vagas.length <= 0 && (
+            <div className="flex w-full items-center justify-center">
+              <p>Sem vagas por hora</p>
+            </div>
+          )}
         </CarouselContent>
         <div className="mt-8 flex justify-center">
           <CarouselPrevious className="relative static mr-2 lg:absolute" />
           <CarouselNext className="relative static ml-2 lg:absolute" />
         </div>
       </Carousel>
-      <div className="mt-12 text-center">
-        <Button asChild variant="default" size="lg" className="px-8">
-          <Link href="/vagas">Ver Todas as Vagas</Link>
-        </Button>
-      </div>
     </div>
   );
 }
