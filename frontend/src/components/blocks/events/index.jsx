@@ -14,81 +14,81 @@ import {
 const events = [
   {
     id: 1,
-    title: "Design Responsivo em 2024",
-    event: "FrontEnd Summit",
+    title: "Soberania Digital e Software Livre no Brasil",
+    event: "Fórum de Tecnologia Pública",
     role: "Palestrante Principal",
-    date: "15 de março de 2024",
-    location: "San Francisco, CA",
+    date: "10 de junho de 2024",
+    location: "Brasília, DF",
     summary:
-      "Discutimos as tendências emergentes em design responsivo e como a IA está mudando a forma como construímos interfaces adaptáveis.",
+      "Debatemos o papel do software livre na construção de uma infraestrutura digital soberana e sustentável para instituições públicas brasileiras.",
     image:
       "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=2070&auto=format&fit=crop",
-    link: "/eventos/detalhar/",
+    link: "/eventos/detalhar/1",
   },
   {
     id: 2,
-    title: "Workshop de UX: Técnicas de Pesquisa com Usuários",
-    event: "DesignMatters Conference",
-    role: "Líder do Workshop",
-    date: "28 de janeiro de 2024",
-    location: "Evento Virtual",
+    title: "Produção e Licenciamento de Software Aberto",
+    event: "Open Source Brasil",
+    role: "Instrutor de Workshop",
+    date: "22 de agosto de 2024",
+    location: "Recife, PE",
     summary:
-      "Workshop prático ensinando métodos de pesquisa com usuários que podem ser implementados com qualquer orçamento.",
+      "Workshop focado em licenciamento de software livre, com orientações práticas para projetos de código aberto em conformidade com legislações brasileiras.",
     image:
       "https://images.unsplash.com/photo-1544531585-9847b68c8c86?q=80&w=2070&auto=format&fit=crop",
-    link: "/eventos/detalhar/",
+    link: "/eventos/detalhar/2",
   },
   {
     id: 3,
-    title: "Construindo Aplicações Web Acessíveis",
-    event: "A11y Summit",
-    role: "Moderador de Painel",
-    date: "12 de novembro de 2023",
-    location: "Chicago, IL",
+    title: "A Nova Experiência do Desenvolvedor",
+    event: "DevExperience Conf",
+    role: "Palestrante Convidado",
+    date: "3 de maio de 2024",
+    location: "Curitiba, PR",
     summary:
-      "Liderei uma discussão sobre as melhores práticas para construir produtos digitais acessíveis do zero.",
+      "Compartilhamos práticas modernas de DX (Developer Experience) com foco em ferramentas, automação de ambientes e simplificação do onboarding técnico.",
     image:
-      "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2112&auto=format&fit=crop",
-    link: "/eventos/detalhar/",
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop",
+    link: "/eventos/detalhar/3",
   },
   {
     id: 4,
-    title: "De Freelancer a Proprietário de Agência",
-    event: "Freelance Business Forum",
-    role: "Palestrante Convidado",
-    date: "5 de outubro de 2023",
-    location: "Austin, TX",
+    title: "Experiência do Usuário em Sistemas Governamentais",
+    event: "UXGov Summit",
+    role: "Moderador de Painel",
+    date: "18 de abril de 2024",
+    location: "Belo Horizonte, MG",
     summary:
-      "Compartilhei minha jornada e conselhos práticos para freelancers que desejam expandir seus negócios e construir uma equipe.",
+      "Os desafios de criar experiências digitais acessíveis e eficientes para cidadãos em portais públicos e serviços online.",
     image:
-      "https://images.unsplash.com/photo-1591115765373-5207764f72e7?q=80&w=2070&auto=format&fit=crop",
-    link: "/eventos/detalhar/",
+      "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2112&auto=format&fit=crop",
+    link: "/eventos/detalhar/4",
   },
   {
     id: 5,
-    title: "Design Systems em Escala",
-    event: "DesignOps Global",
+    title: "Desenvolvimento de Software com Impacto Social",
+    event: "Code For Change",
     role: "Líder do Workshop",
-    date: "18 de setembro de 2023",
-    location: "Berlim, Alemanha",
+    date: "25 de março de 2024",
+    location: "Porto Alegre, RS",
     summary:
-      "Workshop de um dia sobre como criar, implementar e manter sistemas de design para grandes organizações.",
+      "Ensinamos práticas de desenvolvimento orientadas a impacto, com ferramentas open-source e foco em acessibilidade, ética e inclusão digital.",
     image:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
-    link: "/eventos/detalhar/",
+      "https://images.unsplash.com/photo-1591115765373-5207764f72e7?q=80&w=2070&auto=format&fit=crop",
+    link: "/eventos/detalhar/5",
   },
   {
     id: 6,
-    title: "Design de Sites Focados em Conversão",
-    event: "Marketing Innovation Summit",
+    title: "Mercado da Informação e Autonomia Tecnológica",
+    event: "Tech Políticas Latam",
     role: "Palestrante",
-    date: "22 de julho de 2023",
-    location: "Nova York, NY",
+    date: "9 de fevereiro de 2024",
+    location: "São Paulo, SP",
     summary:
-      "Apresentei estratégias para criar sites que equilibram uma experiência do usuário excepcional com metas de conversão de negócios.",
+      "Foram apresentadas reflexões sobre como empresas brasileiras podem proteger seus dados e competir globalmente por meio de soluções próprias e abertas.",
     image:
-      "https://images.unsplash.com/photo-1540304453527-62f979142a17?q=80&w=2070&auto=format&fit=crop",
-    link: "/eventos/detalhar/",
+      "https://images.unsplash.com/photo-1635321101901-7ac6eec3d371?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    link: "/eventos/detalhar/6",
   },
 ];
 
@@ -156,7 +156,8 @@ export default function Events() {
               <CardFooter className="pt-0">
                 <Button variant="ghost" asChild className="group">
                   <Link
-                    href={`${event.link}/${event.id}`}
+                    // href={`${event.link}/${event.id}`}
+                    href={`#`}
                     className="text-primary flex items-center"
                   >
                     <span className="mr-2">Detalhes do evento</span>
