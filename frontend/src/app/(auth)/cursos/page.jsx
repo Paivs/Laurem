@@ -18,17 +18,15 @@ export default function Projetos() {
 
       <PreviewCursos />
 
-      <section className="flex flex-row gap-4 items-center justify-between mx-auto container px-4">
+      <section className="flex flex-col md:flex-row gap-4 items-center justify-between mx-auto container px-4">
         <Testimonials />
         <iframe
-          width="560"
-          height="315"
           src="https://www.youtube.com/embed/yup8gIXxWDU?si=_4cXNRU90dbKqSO9"
           title="YouTube video player"
-          frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className="w-full h-80"
         ></iframe>
       </section>
     </main>

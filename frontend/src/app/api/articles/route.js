@@ -68,7 +68,7 @@ export async function GET(req) {
     const limit = parseInt(searchParams.get("limit")) || 9;
 
     const client = await clientPromise;
-    const db = client.db();
+    const db = client.db("laurem");
 
     const [articles, total] = await Promise.all([
       db

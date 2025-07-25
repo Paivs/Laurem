@@ -29,6 +29,8 @@ export default function RegisterPage() {
   });
 
   const onSubmit = async (data) => {
+    toast.warning("Função desabilitada");
+    return null;
     try {
       const res = await fetch("/api/auth/register", {
         method: "POST",

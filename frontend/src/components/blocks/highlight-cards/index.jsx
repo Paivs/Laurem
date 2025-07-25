@@ -22,7 +22,7 @@ export default function HighlightCards() {
         "LGPD",
       ],
       year: "2025",
-      link: "#",
+      link: "/projetos",
     },
     {
       title: "Neuman - Gestão Jurídica Inteligente",
@@ -40,7 +40,7 @@ export default function HighlightCards() {
         "Cloud Computing",
       ],
       year: "2022",
-      link: "#",
+      link: "/projetos",
     },
   ];
 

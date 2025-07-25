@@ -33,6 +33,8 @@ export default function LoginPage() {
 
       const data = await response.json();
 
+      document.cookie = `token=${data.token}; Path=/;`;
+
       if (!response.ok) {
         throw new Error(data.message || 'Erro no login');
       }

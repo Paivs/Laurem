@@ -2,10 +2,11 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 export default function HeroShowcases() {
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.12, delay: 0.25 }}
@@ -22,8 +23,8 @@ export default function HeroShowcases() {
             {/* Label with dots */}
             <div className="hidden sm:flex items-center space-x-3">
               {/* <span className="bg-primary h-1.5 w-1.5 rounded-full"></span> */}
-              <h1 className="text-primary text-sm font-semibold tracking-wider uppercase hidden">
-                LAUREM
+              <h1 className="text-primary text-sm font-semibold tracking-wider uppercase">
+                LAUREM - Software, Soluções e Serviços
               </h1>
             </div>
 
@@ -35,49 +36,61 @@ export default function HeroShowcases() {
 
             {/* Description text */}
             <p className="text-muted-foreground max-w-xl text-lg">
-              A Laurem acredita que todos merecem liberdade. Nossos produtos
-              são feitos para você controlar, editar, e, se quiser, hospedar.
+              A Laurem acredita que todos merecem liberdade. Nossos produtos são
+              feitos para você controlar, editar, e, se quiser, hospedar.
             </p>
 
+          <div className="md:hidden border-muted/30 bg-muted/10 relative z-10 h-[300px] w-full overflow-hidden rounded-2xl border shadow-xl">
+            <Image
+              src="/img/home_section_1.avif"
+              alt="Designer's workspace with contemporary design elements"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+          </div>
+
             {/* Featured clients section */}
-            <div className="pt-2">
-              <p className="text-muted-foreground mb-3 text-sm font-medium text-center md:text-left underline text-primary">
+            <section className="pt-2">
+              <p className="text-muted-foreground mb-3 text-sm font-medium text-center md:text-left underline">
                 GUIADOS POR
               </p>
-              <div className="flex flex-wrap items-center gap-6 justify-center md:justify-normal">
-                <div className="text-muted-foreground/70 hover:text-foreground font-semibold transition-colors">
-                  LIBERDADE
-                </div>
-                <div className="text-muted-foreground/70 hover:text-foreground font-semibold transition-colors">
-                  AUTONOMIA
-                </div>
-                <div className="text-muted-foreground/70 hover:text-foreground font-semibold transition-colors">
-                  USABILIDADE
-                </div>
-                <div className="text-muted-foreground/70 hover:text-foreground font-semibold transition-colors">
-                  RESPEITO
-                </div>
-                <div className="text-muted-foreground/70 hover:text-foreground font-semibold transition-colors">
-                  ÉTICA
-                </div>
-                <div className="text-muted-foreground/70 hover:text-foreground font-semibold transition-colors">
-                  MODERNIDADE
-                </div>
-              </div>
-            </div>
+              <ul className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
+                {[
+                  "LIBERDADE",
+                  "AUTONOMIA",
+                  "USABILIDADE",
+                  "RESPEITO",
+                  "ÉTICA",
+                  "MODERNIDADE",
+                ].map((valor) => (
+                  <li
+                    key={valor}
+                    className="text-muted-foreground/70 hover:text-foreground text-sm md:text-base font-semibold transition-colors"
+                  >
+                    {valor}
+                  </li>
+                ))}
+              </ul>
+            </section>
 
             {/* Call to action buttons */}
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <Button size="lg" className="group">
-                Ver soluções
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <nav className="flex flex-col gap-4 sm:flex-row">
+              <Button asChild size="lg" className="group">
+                <Link href={"/solucoes"}>
+                  Ver soluções
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
               </Button>
 
-              <Button variant="outline" size="lg" className="group">
-                Entrar em contato
-                <ExternalLink className="ml-2 h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100" />
+              <Button asChild variant="outline" size="lg" className="group">
+                <Link href={"/contato"}>
+                  Entrar em contato
+                  <ExternalLink className="ml-2 h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100" />
+                </Link>
               </Button>
-            </div>
+            </nav>
           </div>
         </div>
 
@@ -87,7 +100,7 @@ export default function HeroShowcases() {
           <div className="border-primary/20 bg-background/50 absolute -top-6 -right-6 h-20 w-20 rounded-md border backdrop-blur-sm"></div>
 
           {/* Main image with frame */}
-          <div className="border-muted/30 bg-muted/10 relative z-10 h-full w-full overflow-hidden rounded-2xl border shadow-xl">
+          <div className="border-muted/30 bg-muted/10 relative z-10 h-full w-full overflow-hidden rounded-2xl border shadow-xl hidden md:block">
             <Image
               src="/img/home_section_1.avif"
               alt="Designer's workspace with contemporary design elements"
@@ -103,6 +116,6 @@ export default function HeroShowcases() {
           <div className="border-primary/10 bg-background/50 absolute -bottom-6 -left-6 h-24 w-24 rounded-full border backdrop-blur-sm"></div>
         </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 }

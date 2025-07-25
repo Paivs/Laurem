@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 async function apiFetchServer(path, options = {}) {
   const { skipAuth = false, ...fetchOptions } = options;
   const cookiesStore = await cookies();
-  
+
   // Só busca o token se não for para pular autenticação
   const token = skipAuth ? null : cookiesStore.get("token")?.value;
 
@@ -14,8 +14,15 @@ async function apiFetchServer(path, options = {}) {
     ...(token && { Authorization: `Bearer ${token}` }), // Só adiciona Authorization se existir token
     ...fetchOptions.headers,
   };
+  const url = `${process.env.NEXT_API_URL}api/${path}`;
 
-  const res = await fetch(`${process.env.NEXT_API_URL}api/${path}`, {
+  console.log(`Fetching URL: ${url} with options:`, {
+    method: fetchOptions.method || "GET",
+    headers,
+    body: fetchOptions.body,
+  });
+
+  const res = await fetch(url, {
     ...fetchOptions,
     headers,
     cache: "no-store",
