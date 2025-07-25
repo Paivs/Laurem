@@ -1,4 +1,5 @@
-// @/lib/api-server.js
+// @/lib/api-server.server.js
+
 import { cookies } from "next/headers";
 
 async function apiFetchServer(path, options = {}) {
