@@ -15,6 +15,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Cta from "@/components/blocks/cta/cta";
 
 function WebStack() {
   return (
@@ -263,7 +264,7 @@ export default function TechnologiesPage() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <img
-            src="/img/creative-work.svg"
+            src="https://illustrations.popsy.co/red/man-with-a-laptop.svg"
             alt="Ilustração criativa"
             className="max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full h-auto drop-shadow-xl"
             loading="lazy"
@@ -317,6 +318,7 @@ export default function TechnologiesPage() {
           <CyberStack />
         </article>
       </main>
+      <Cta />
     </>
   );
 }

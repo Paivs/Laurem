@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowBigLeft, CalendarIcon, Quote } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
-import { apiServer } from "@/lib/api-server";
+import { apiServer } from "@/lib/api-server.server";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { Button } from "@/components/ui/button";
