@@ -63,7 +63,7 @@ export default function NavBar() {
 
   const moreOptions = [
     { href: "/contato", label: "Contatos" },
-    { href: "/vendas", label: "vendas" },
+    { href: "/vendas", label: "Vendas" },
     { href: "/sobre", label: "Sobre" },
     { href: "/cursos", label: "Aprenda conosco" },
     { href: "/auth/login", label: "Admin" },
@@ -73,7 +73,7 @@ export default function NavBar() {
     { href: "/stacks#web", label: "Sistemas WEB" },
     { href: "/stacks#mobile", label: "Aplicativos Mobiles" },
     { href: "/stacks#infra", label: "Infra e DevOps" },
-    { href: "/stacks#web", label: "Cibersegurança" },
+    { href: "/stacks#cyber", label: "Cibersegurança" },
   ];
 
   // Função para verificar se o link está ativo
@@ -166,9 +166,11 @@ export default function NavBar() {
                     <div key={index}>
                       {item.label == "Admin" && <DropdownMenuSeparator />}
 
-                      <DropdownMenuItem>
-                        {" "}
-                        <Link href={item.href}>{item.label}</Link>
+                      <DropdownMenuItem asChild>
+                        <Link href={item.href} className="w-full h-full">
+                          {" "}
+                          {item.label}
+                        </Link>
                       </DropdownMenuItem>
                     </div>
                   );
@@ -201,9 +203,11 @@ export default function NavBar() {
                     <div key={index}>
                       {item.label == "Admin" && <DropdownMenuSeparator />}
 
-                      <DropdownMenuItem>
-                        {" "}
-                        <Link href={item.href}>{item.label}</Link>
+                      <DropdownMenuItem asChild>
+                        <Link href={item.href} className="w-full h-full">
+                          {" "}
+                          {item.label}
+                        </Link>
                       </DropdownMenuItem>
                     </div>
                   );
@@ -277,11 +281,48 @@ export default function NavBar() {
                 <DropdownMenu modal={false}>
                   <DropdownMenuTrigger asChild>
                     <NavigationMenuItem
-                      className={`text-foreground hover:text-primary flex-row items-center gap-2 py-1.5 text-lg font-medium`}
+                      className={`text-foreground hover:text-primary flex-row items-center gap-2 font-medium`}
                     >
                       <Button
                         variant={"ghost"}
-                        className={`text-foreground hover:text-primary flex-row p-2 items-center gap-2 py-1.5 font-medium`}
+                        className={`text-foreground hover:text-primary flex-row p-2 items-center gap-2 font-medium`}
+                      >
+                        <SquaresUnite
+                          size={16}
+                          className="text-muted-foreground/80"
+                          aria-hidden={"true"}
+                        />
+                        Stacks
+                        <ChevronDown size={16} aria-hidden="true" />
+                      </Button>
+                    </NavigationMenuItem>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {stacks.map((item, index) => {
+                      return (
+                        <div key={index}>
+                          {item.label == "Admin" && <DropdownMenuSeparator />}
+
+                          <DropdownMenuItem asChild>
+                            <Link href={item.href} className="w-full h-full">
+                              {" "}
+                              {item.label}
+                            </Link>
+                          </DropdownMenuItem>
+                        </div>
+                      );
+                    })}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                <DropdownMenu modal={false}>
+                  <DropdownMenuTrigger asChild>
+                    <NavigationMenuItem
+                      className={`text-foreground hover:text-primary flex-row items-center gap-2 font-medium`}
+                    >
+                      <Button
+                        variant={"ghost"}
+                        className={`text-foreground hover:text-primary flex-row p-2 items-center gap-2 font-medium`}
                       >
                         <ListPlus
                           size={16}
@@ -289,30 +330,25 @@ export default function NavBar() {
                           aria-hidden={"true"}
                         />
                         Outros
+                        <ChevronDown size={16} aria-hidden="true" />
                       </Button>
                     </NavigationMenuItem>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuItem>
-                      {" "}
-                      <Link href="/contato">Contato</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      {" "}
-                      <Link href="/vendas">Vendas</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      {" "}
-                      <Link href="/sobre">Sobre</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      {" "}
-                      <Link href="/cursos">Aprenda conosco</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      {" "}
-                      <Link href="/principios">Principios</Link>
-                    </DropdownMenuItem>
+                    {moreOptions.map((item, index) => {
+                      return (
+                        <div key={index}>
+                          {item.label == "Admin" && <DropdownMenuSeparator />}
+
+                          <DropdownMenuItem asChild>
+                            <Link href={item.href} className="w-full h-full">
+                              {" "}
+                              {item.label}
+                            </Link>
+                          </DropdownMenuItem>
+                        </div>
+                      );
+                    })}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </NavigationMenuList>

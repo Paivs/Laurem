@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function ModernHero() {
   return (
     <section className="py-32">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-10 lg:flex-row lg:gap-20 items-center">
           <div className="mx-auto flex max-w-xl flex-col justify-between gap-10">
             <div>

@@ -26,7 +26,7 @@ export default function HeroShowcases() {
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.12, delay: 0.25 }}
       viewport={{ once: true }}
-      className="relative overflow-hidden h-screen flex items-center justify-center"
+      className="relative overflow-hidden h-screen flex items-center justify-center pt-32"
     >
       {/* Background gradient accent */}
       <div className="bg-primary/10 absolute -top-32 -left-32 h-96 w-96 rounded-full blur-3xl" />

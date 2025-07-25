@@ -57,7 +57,7 @@ const ServicesSection = () => {
   ]
   return (
     <section className="py-15">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl px-4">
         <div className="flex flex-col gap-6 text-center">
           <p className="font-medium">+100 projetos entregues</p>
           <h2 className="text-4xl font-medium md:text-5xl">

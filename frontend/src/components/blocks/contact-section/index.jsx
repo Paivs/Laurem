@@ -16,7 +16,7 @@ export default function ContactSection({
 }) {
   return (
     <section className="py-32">
-      <div className="container mx-auto">
+      <div className="max-w-7xl mx-auto px-2">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-10 lg:flex-row lg:gap-20">
           <div className="mx-auto flex max-w-sm flex-col justify-between gap-10">
             <div className="text-center lg:text-left">
@@ -46,21 +46,21 @@ export default function ContactSection({
                 </li>
                 <li className="flex items-center gap-2">
                 <AtSign className="text-muted-foreground size-5"/> <span className="font-bold">Email: </span>
-                  <a href={`mailto:${email}`} className="">
+                  <Link href={`mailto:${email}`} className="">
                     {email}
-                  </a>
+                  </Link>
                 </li>
                 <li className="flex items-center gap-2">
                 <Globe className="text-muted-foreground size-5"/> <span className="font-bold">Web: </span>
-                  <a href={web.url} target="_blank" className="">
+                  <Link href={web.url} target="_blank" className="">
                     {web.label}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="mx-auto flex w-[32rem] flex-col gap-6 rounded-lg border border-primary/25 p-10">
+          <div className="mx-auto flex w-full md:w-[32rem] flex-col gap-6 rounded-lg border border-primary/25 p-10">
             <div className="flex gap-4">
               <div className="grid w-full items-center gap-1.5">
                 <Label htmlFor="firstname">Nome</Label>

@@ -68,7 +68,7 @@ function BlogSingle1({
   return (
     <section className="py-32">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="relative mb-12 h-[600px] overflow-hidden">
+        <div className="relative mb-12 h-[400px] overflow-hidden">
           <img
             src={coverImage}
             alt="Imagem de capa do post"
@@ -77,7 +77,7 @@ function BlogSingle1({
             className="h-full w-full rounded-lg object-cover"
           />
           <div className="absolute inset-0 flex flex-col justify-end rounded-lg bg-gradient-to-r from-black/70 to-black/30 p-8 text-white">
-            <h1 className="mb-4 text-5xl font-bold leading-tight">{title}</h1>
+            <h1 className="mb-4 text-xl md:text-5xl font-bold leading-tight">{title}</h1>
             <div className="mb-4 flex items-center space-x-4">
               <Avatar className="size-12 ring-2 ring-primary ring-offset-2 ring-offset-background">
                 <AvatarImage src={author?.avatarSrc} alt={author?.name} />

@@ -208,7 +208,7 @@ export default function TechnologiesPage() {
   return (
     <>
       <motion.div
-        className="mx-auto flex max-w-7xl px-4 flex-col justify-between gap-10 lg:flex-row lg:gap-20 items-center pt-16"
+        className="mx-auto flex max-w-7xl px-4 flex-col justify-between gap-10 lg:flex-row lg:gap-20 items-center pt-24"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}

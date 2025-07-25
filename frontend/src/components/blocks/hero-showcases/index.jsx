@@ -40,6 +40,17 @@ export default function HeroShowcases() {
               feitos para você controlar, editar, e, se quiser, hospedar.
             </p>
 
+          <div className="md:hidden border-muted/30 bg-muted/10 relative z-10 h-[300px] w-full overflow-hidden rounded-2xl border shadow-xl">
+            <Image
+              src="/img/home_section_1.avif"
+              alt="Designer's workspace with contemporary design elements"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+          </div>
+
             {/* Featured clients section */}
             <section className="pt-2">
               <p className="text-muted-foreground mb-3 text-sm font-medium text-center md:text-left underline">
@@ -56,7 +67,7 @@ export default function HeroShowcases() {
                 ].map((valor) => (
                   <li
                     key={valor}
-                    className="text-muted-foreground/70 hover:text-foreground font-semibold transition-colors"
+                    className="text-muted-foreground/70 hover:text-foreground text-sm md:text-base font-semibold transition-colors"
                   >
                     {valor}
                   </li>
@@ -89,7 +100,7 @@ export default function HeroShowcases() {
           <div className="border-primary/20 bg-background/50 absolute -top-6 -right-6 h-20 w-20 rounded-md border backdrop-blur-sm"></div>
 
           {/* Main image with frame */}
-          <div className="border-muted/30 bg-muted/10 relative z-10 h-full w-full overflow-hidden rounded-2xl border shadow-xl">
+          <div className="border-muted/30 bg-muted/10 relative z-10 h-full w-full overflow-hidden rounded-2xl border shadow-xl hidden md:block">
             <Image
               src="/img/home_section_1.avif"
               alt="Designer's workspace with contemporary design elements"
