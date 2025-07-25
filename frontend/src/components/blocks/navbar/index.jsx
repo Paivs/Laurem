@@ -103,7 +103,7 @@ export default function NavBar() {
 
   return (
     <header className="border-b md:px-8 fixed top w-screen z-50 bg-background">
-      <div className="flex h-16 items-center justify-between gap-4 max-w-[calc(100vw-2rem)] md:max-w-[calc(100vw-5rem)]">
+      <div className="flex h-16 items-center justify-between gap-4 max-w-[calc(100vw-2rem)] md:max-w-[calc(100vw-6rem)]">
         {/* Left side */}
         <div className="flex flex-1 items-center gap-2">
           {/* Logo */}
@@ -114,7 +114,7 @@ export default function NavBar() {
           </div>
         </div>
         {/* Middle area */}
-        <NavigationMenu className="max-md:hidden">
+        <NavigationMenu className="max-lg:hidden">
           <NavigationMenuList className="gap-2">
             {navigationLinks.map((link, index) => {
               const Icon = link.icon;
@@ -221,7 +221,7 @@ export default function NavBar() {
         <Sheet>
           <SheetTrigger asChild className="mx-2">
             <Button
-              className="group size-8 md:hidden"
+              className="group size-8 lg:hidden"
               variant="ghost"
               size="icon"
             >
@@ -252,7 +252,7 @@ export default function NavBar() {
               </svg>
             </Button>
           </SheetTrigger>
-          <SheetContent align="start" className="p-1 md:hidden">
+          <SheetContent align="start" className="p-1 lg:hidden">
             <SheetHeader>
               <SheetTitle>Menu</SheetTitle>
               <SheetDescription>Navegue pelas páginas do site</SheetDescription>

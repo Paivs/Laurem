@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -11,23 +11,51 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar, Clock, User, MapPin, BookOpen } from "lucide-react";
 import Link from "next/link";
+import { api } from "@/lib/api";
 
 // Esquema de validação com Zod
 const formSchema = z.object({
-  nomeCompleto: z.string().min(3, "Nome deve ter pelo menos 3 caracteres"),
-  email: z.email("Email inválido"),
-  telefone: z.string().min(11, "Telefone deve ter pelo menos 11 dígitos"),
+  nomeCompleto: z
+    .string()
+    .min(3, { message: "O nome deve ter pelo menos 3 caracteres" }),
+
+  email: z.string().email({ message: "E-mail inválido" }),
+
+  telefone: z
+    .string()
+    .min(11, { message: "O telefone deve ter pelo menos 11 dígitos" }),
+
   empresa: z.string().optional(),
+
   servico: z.enum(["consultoria", "workshop", "palestra", "visita", "outro"], {
     required_error: "Selecione um tipo de serviço",
-    invalid_type_error: "Tipo de serviço inválido",
+    invalid_type_error:
+      "Tipo de serviço inválido. Opções válidas: consultoria, workshop, palestra, visita ou outro.",
   }),
-  data: z.string().min(1, "Selecione uma data"),
-  horario: z.string().min(1, "Selecione um horário"),
-  participantes: z.number().min(1, "Número de participantes inválido"),
-  mensagem: z.string().min(10, "Mensagem deve ter pelo menos 10 caracteres"),
+
+  data: z.string().min(1, { message: "Selecione uma data" }),
+
+  horario: z.string().min(1, { message: "Selecione um horário" }),
+
+  participantes: z.preprocess(
+    (val) => {
+      if (typeof val === "string") return Number(val);
+      return val;
+    },
+    z
+      .number({
+        invalid_type_error: "Número de participantes inválido",
+        required_error: "Informe o número de participantes",
+      })
+      .min(1, { message: "Informe ao menos 1 participante" })
+  ),
+
+  mensagem: z
+    .string()
+    .min(10, { message: "A mensagem deve ter pelo menos 10 caracteres" }),
+
   termos: z.literal(true, {
-    errorMap: () => ({ message: "Você deve aceitar os termos" }),
+    errorMap: () => ({ message: "Você deve aceitar os termos de uso" }),
   }),
 });
 
@@ -39,13 +67,34 @@ export default function AgendamentoSection() {
     reset,
   } = useForm({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      nomeCompleto: "",
+      email: "",
+      telefone: "",
+      empresa: "",
+      servico: "consultoria",
+      data: "",
+      horario: "",
+      participantes: 1, // valor inicial numérico
+      mensagem: "",
+      termos: false,
+    },
   });
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const onSubmit = (data) => {
-    // Simulando envio
-    console.log(data);
-    toast.success("Agendamento solicitado com sucesso!");
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      await api.post("events", data);
+      toast.success("Evento requisitado com sucesso!");
+      setSuccessMessage(
+        "Recebemos seu pedido... assim que possível retornamos seu contato"
+      );
+      reset();
+    } catch (error) {
+      console.log(error);
+      
+      toast.error("Falha ao enviar. Tente novamente mais tarde.");
+    }
   };
 
   const onError = (errors) => {
@@ -55,16 +104,16 @@ export default function AgendamentoSection() {
       .join("\n"); // Usa quebra de linha real
 
     // Usando description para melhor formatação
-    toast.error("Por favor, corrija os seguintes erros:", {
-      description: (
-        <div className="whitespace-pre-line">
-          {" "}
-          {/* Isso preserva quebras de linha */}
-          {errorMessages}
-        </div>
-      ),
-      duration: 10000, // 10 segundos para ler todos os erros
-    });
+    // toast.error("Por favor, corrija os seguintes erros:", {
+    //   description: (
+    //     <div className="whitespace-pre-line">
+    //       {" "}
+    //       {/* Isso preserva quebras de linha */}
+    //       {errorMessages}
+    //     </div>
+    //   ),
+    //   duration: 10000, // 10 segundos para ler todos os erros
+    // });
   };
 
   return (
@@ -243,12 +292,25 @@ export default function AgendamentoSection() {
               </Label>
             </div>
             {errors.termos && (
-              <p className="text-sm text-red-500">{errors.termos.message}</p>
+              <>
+                {errors.termos.message?.toString() ==
+                "Invalid input: expected true" ? (
+                  <p className="text-sm text-red-500">
+                    Você deve concordar com os termos
+                  </p>
+                ) : (
+                  <p className="text-sm text-red-500">
+                    {errors.termos.message?.toString()}
+                  </p>
+                )}
+              </>
             )}
 
             <Button type="submit" className="w-full py-6 text-lg">
               Solicitar Agendamento
             </Button>
+
+            <span className="font-bold text-green-700">{successMessage}</span>
           </form>
         </div>
 

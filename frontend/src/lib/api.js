@@ -20,15 +20,12 @@ export async function apiFetch(path, options = {}) {
     ...(token && { Authorization: `Bearer ${token}` }),
     ...options.headers,
   };
-
+  
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}api/${path}`,
-      {
-        ...options,
-        headers,
-      }
-    );
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/${path}`, {
+      ...options,
+      headers,
+    });
 
     const contentType = response.headers.get("content-type");
     const isJson = contentType && contentType.includes("application/json");
@@ -47,13 +44,13 @@ export async function apiFetch(path, options = {}) {
     if (!response.ok) {
       if (data?.message) {
         console.error(data.message);
-        throw new Error(data.message)
+        throw new Error(data.message);
       } else if (data?.errors) {
         console.error(data.errors);
-        throw new Error(data.errors)
+        throw new Error(data.errors);
       } else {
         console.error(`Erro ${response.status}`);
-        throw new Error(response.status)
+        throw new Error(response.status);
       }
     }
 

@@ -8,21 +8,21 @@ const routeConfig = {
   publicRoutes: [
     "/api/auth/login",
     "/api/auth/register",
+    "/api/sales:POST",
+    "/api/sales:GET",
+    "/api/contact:GET",
+    "/api/contact:POST",
+    "/api/events:GET",
+    "/api/events:POST",
     "/api/articles:GET", // GET público, outros métodos protegidos
     "/api/articles/[id]", // GET público, outros métodos protegidos
   ],
-  
+
   // Rotas que exigem autenticação mas não verificação de perfil
-  authenticatedRoutes: [
-    "/api/user",
-    "/api/orders"
-  ],
-  
+  authenticatedRoutes: ["/api/user", "/api/orders"],
+
   // Rotas admin (exigem perfil admin)
-  adminRoutes: [
-    "/admin",
-    "/api/admin"
-  ]
+  adminRoutes: ["/admin", "/api/admin"],
 };
 
 export async function middleware(request) {
@@ -34,13 +34,15 @@ export async function middleware(request) {
   const isRouteMatch = (routePattern) => {
     const [basePath, allowedMethods] = routePattern.split(":");
     const methods = allowedMethods ? allowedMethods.split(",") : [];
-    
-    return (pathname === basePath || pathname.startsWith(`${basePath}/`)) &&
-           (methods.length === 0 || methods.includes(method));
+
+    return (
+      (pathname === basePath || pathname.startsWith(`${basePath}/`)) &&
+      (methods.length === 0 || methods.includes(method))
+    );
   };
 
   // 1. Verificar rotas públicas
-  const isPublic = routeConfig.publicRoutes.some(route => {
+  const isPublic = routeConfig.publicRoutes.some((route) => {
     if (route.includes(":")) {
       return isRouteMatch(route);
     }
@@ -48,7 +50,7 @@ export async function middleware(request) {
     return pathname === route || pathname.startsWith(`${route}/`);
   });
 
-  if (isPublic) { 
+  if (isPublic) {
     return NextResponse.next();
   }
 
@@ -66,8 +68,8 @@ export async function middleware(request) {
     }
 
     // 5. Verificar rotas admin
-    const isAdminRoute = routeConfig.adminRoutes.some(route => 
-      pathname === route || pathname.startsWith(`${route}/`)
+    const isAdminRoute = routeConfig.adminRoutes.some(
+      (route) => pathname === route || pathname.startsWith(`${route}/`)
     );
 
     if (isAdminRoute && !decoded) {
@@ -81,7 +83,6 @@ export async function middleware(request) {
     response.headers.set("x-user-perfil", decoded.perfil);
 
     return response;
-
   } catch (error) {
     console.error("Falha na verificação JWT:", error);
     return redirectToLogin(request, "Sessão inválida");
@@ -96,9 +97,5 @@ function redirectToLogin(request, message) {
 }
 
 export const config = {
-  matcher: [
-    "/admin/:path*",
-    "/api/:path*",
-    "/user/:path*"
-  ],
+  matcher: ["/admin/:path*", "/api/:path*", "/user/:path*"],
 };

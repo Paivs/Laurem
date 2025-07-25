@@ -1,11 +1,22 @@
-import React from "react";
+"use client";
 
+import React, { useState } from "react";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { BrainCircuit, MessageSquare, Wrench, Phone, AtSign, Globe } from "lucide-react";
+import { Phone, AtSign, Globe } from "lucide-react";
 import Link from "next/link";
+import { toast } from "sonner";
+import { api } from "@/lib/api";
+
+const ContactSchema = z.object({
+  name: z.string().min(2, "Nome muito curto"),
+  email: z.string().email("Email inválido"),
+  subject: z.string().min(2, "Assunto obrigatório"),
+  message: z.string().min(5, "Mensagem muito curta"),
+});
 
 export default function ContactSection({
   title = "Nos Contate",
@@ -14,6 +25,60 @@ export default function ContactSection({
   email = "gustavo.paiva.gp1@gmail.com",
   web = { label: "laurem.com.br", url: "https://laurem.com.br" },
 }) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
+
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+    setErrors({ ...errors, [e.target.id]: "" }); // Limpa erro ao digitar
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const result = ContactSchema.safeParse(formData);
+
+    if (!result.success) {
+      const fieldErrors = {};
+
+      result.error.issues.forEach((err) => {
+        const field = err.path[0];
+        fieldErrors[field] = err.message;
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(result.data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao enviar mensagem.");
+      }
+
+      toast.success("Mensagem enviada com sucesso!");
+      setSuccessMessage(
+        "Recebemos sua mensagem... assim que possível retornamos seu contato"
+      );
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setErrors({});
+    } catch (error) {
+      toast.error("Falha ao enviar. Tente novamente mais tarde.");
+    }
+  }
+
   return (
     <section className="py-32">
       <div className="max-w-7xl mx-auto px-2">
@@ -36,23 +101,21 @@ export default function ContactSection({
               <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left">
                 Nossos Contatos
               </h3>
-
               <ul className="ml-0 list-disc">
                 <li className="flex items-center gap-2">
-                  
-                <Phone className="text-muted-foreground size-5"/>  
-                <span className="font-bold">Telefone: </span>
+                  <Phone className="text-muted-foreground size-5" />
+                  <span className="font-bold">Telefone: </span>
                   {phone}
                 </li>
                 <li className="flex items-center gap-2">
-                <AtSign className="text-muted-foreground size-5"/> <span className="font-bold">Email: </span>
-                  <Link href={`mailto:${email}`} className="">
-                    {email}
-                  </Link>
+                  <AtSign className="text-muted-foreground size-5" />
+                  <span className="font-bold">Email: </span>
+                  <Link href={`mailto:${email}`}>{email}</Link>
                 </li>
                 <li className="flex items-center gap-2">
-                <Globe className="text-muted-foreground size-5"/> <span className="font-bold">Web: </span>
-                  <Link href={web.url} target="_blank" className="">
+                  <Globe className="text-muted-foreground size-5" />
+                  <span className="font-bold">Web: </span>
+                  <Link href={web.url} target="_blank">
                     {web.label}
                   </Link>
                 </li>
@@ -60,50 +123,80 @@ export default function ContactSection({
             </div>
           </div>
 
-          <div className="mx-auto flex w-full md:w-[32rem] flex-col gap-6 rounded-lg border border-primary/25 p-10">
-            <div className="flex gap-4">
-              <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="firstname">Nome</Label>
-                <Input
-                  className={"border border-primary/25"}
-                  type="text"
-                  id="firstname"
-                  placeholder="Escreva seu nome"
-                />
-              </div>
-             
+          <form
+            onSubmit={handleSubmit}
+            className="mx-auto flex w-full md:w-[32rem] flex-col gap-6 rounded-lg border border-primary/25 p-10"
+          >
+            <div className="grid w-full gap-1.5">
+              <Label htmlFor="name">Nome</Label>
+              <Input
+                className="border border-primary/25"
+                type="text"
+                id="name"
+                placeholder="Escreva seu nome"
+                value={formData.name}
+                onChange={handleChange}
+              />
+              {errors.name && (
+                <p className="text-red-500 text-sm">{errors.name}</p>
+              )}
             </div>
-            <div className="grid w-full items-center gap-1.5">
+
+            <div className="grid w-full gap-1.5">
               <Label htmlFor="email">Email</Label>
               <Input
-                className={"border border-primary/25"}
+                className="border border-primary/25"
                 type="email"
                 id="email"
                 placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email}</p>
+              )}
             </div>
-            <div className="grid w-full items-center gap-1.5">
+
+            <div className="grid w-full gap-1.5">
               <Label htmlFor="subject">Assunto</Label>
               <Input
-                className={"border border-primary/25"}
+                className="border border-primary/25"
                 type="text"
                 id="subject"
                 placeholder="Assunto"
+                value={formData.subject}
+                onChange={handleChange}
               />
+              {errors.subject && (
+                <p className="text-red-500 text-sm">{errors.subject}</p>
+              )}
             </div>
+
             <div className="grid w-full gap-1.5">
               <Label htmlFor="message">Mensagem</Label>
               <Textarea
-                className={"border border-primary/25"}
-                placeholder="Escreva sua mensagem aqui"
+                className="border border-primary/25"
                 id="message"
+                placeholder="Escreva sua mensagem aqui"
+                value={formData.message}
+                onChange={handleChange}
               />
+              {errors.message && (
+                <p className="text-red-500 text-sm">{errors.message}</p>
+              )}
             </div>
-            <Button className="w-full">Enviar</Button>
-          </div>
-        </div>
 
-        <div className="mt-12 grid items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            <Button className="w-full" type="submit">
+              Enviar
+            </Button>
+            {successMessage && (
+              <p className="text-green-600 text-center">{successMessage}</p>
+            )}
+          </form>
+        </div>
+      </div>
+
+      {/* <div className="mt-12 grid items-center gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
           <Link
             href={"/base-conhecimento"}
             className="group hover:bg-muted flex h-full flex-col rounded-lg p-4 text-center sm:p-6"
@@ -193,8 +286,7 @@ export default function ContactSection({
               </p>
             </div>
           </Link>
-        </div>
-      </div>
+        </div> */}
     </section>
   );
 }

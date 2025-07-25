@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,6 +12,19 @@ import {
   ClipboardCheck,
 } from "lucide-react";
 import Link from "next/link";
+import * as z from "zod";
+import { api } from "@/lib/api";
+import { toast } from "sonner";
+
+const salesSchema = z.object({
+  name: z.string().min(2, "Nome é obrigatório"),
+  company: z.string().optional(),
+  email: z.string().email("Email inválido"),
+  phone: z.string().min(8, "Telefone é obrigatório"),
+  subject: z.enum(["budget", "partnership", "product", "other"], "Selecione um assunto válido"),
+  message: z.string().min(10, "Mensagem deve ter ao menos 10 caracteres"),
+  terms: z.literal(true, { errorMap: () => ({ message: "Você deve aceitar os termos" }) }),
+});
 
 export default function SalesSection({
   title = "Solicite um Orçamento",
@@ -18,6 +33,54 @@ export default function SalesSection({
   email = "comercial@laurem.com.br",
   web = { label: "laurem.com.br", url: "https://laurem.com.br" },
 }) {
+  const [errors, setErrors] = useState({});
+  const [sucessMessage, setSucessMessage] = useState("");
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrors({});
+
+    const formData = new FormData(e.target);
+    const data = {
+      name: formData.get("name")?.toString().trim() || "",
+      company: formData.get("company")?.toString().trim() || "",
+      email: formData.get("email")?.toString().trim() || "",
+      phone: formData.get("phone")?.toString().trim() || "",
+      subject: formData.get("subject")?.toString(),
+      message: formData.get("message")?.toString().trim() || "",
+      terms: formData.get("terms") === "on",
+    };
+
+    const validation = salesSchema.safeParse(data);
+    if (!validation.success) {
+      // Mapeia erros para o estado
+      const fieldErrors = {};
+      validation.error.issues.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0]] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setSending(true);
+    try {
+      const response = await api.post("sales", data);
+      if (response.error) {
+        toast.error("Erro ao enviar a solicitação: " + response.message);
+      } else {
+        toast.success("Solicitação enviada com sucesso!");
+        setSucessMessage("Recebemos seu contato, retornamos assim que possível!")
+        e.target.reset();
+      }
+    } catch (err) {
+      toast.error("Erro inesperado ao enviar: " + err.message);
+    }
+    setSending(false);
+  };
+
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
@@ -80,7 +143,7 @@ export default function SalesSection({
                 Formulário Comercial
               </h2>
 
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit} noValidate>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div>
                     <Label htmlFor="name" className="mb-2 block font-medium">
@@ -88,11 +151,19 @@ export default function SalesSection({
                     </Label>
                     <Input
                       id="name"
+                      name="name"
                       type="text"
                       placeholder="Seu nome"
                       required
                       className="border-gray-300 focus:ring-primary"
+                      aria-invalid={errors.name ? "true" : "false"}
+                      aria-describedby={errors.name ? "error-name" : undefined}
                     />
+                    {errors.name && (
+                      <p id="error-name" className="mt-1 text-sm text-red-600">
+                        {errors.name}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <Label htmlFor="company" className="mb-2 block font-medium">
@@ -100,6 +171,7 @@ export default function SalesSection({
                     </Label>
                     <Input
                       id="company"
+                      name="company"
                       type="text"
                       placeholder="Nome da empresa"
                       className="border-gray-300 focus:ring-primary"
@@ -114,11 +186,19 @@ export default function SalesSection({
                     </Label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="seu@email.com"
                       required
                       className="border-gray-300 focus:ring-primary"
+                      aria-invalid={errors.email ? "true" : "false"}
+                      aria-describedby={errors.email ? "error-email" : undefined}
                     />
+                    {errors.email && (
+                      <p id="error-email" className="mt-1 text-sm text-red-600">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <Label htmlFor="phone" className="mb-2 block font-medium">
@@ -126,11 +206,19 @@ export default function SalesSection({
                     </Label>
                     <Input
                       id="phone"
+                      name="phone"
                       type="tel"
                       placeholder="(11) 99999-9999"
                       required
                       className="border-gray-300 focus:ring-primary"
+                      aria-invalid={errors.phone ? "true" : "false"}
+                      aria-describedby={errors.phone ? "error-phone" : undefined}
                     />
+                    {errors.phone && (
+                      <p id="error-phone" className="mt-1 text-sm text-red-600">
+                        {errors.phone}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -140,15 +228,26 @@ export default function SalesSection({
                   </Label>
                   <select
                     id="subject"
+                    name="subject"
                     required
                     className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                    aria-invalid={errors.subject ? "true" : "false"}
+                    aria-describedby={errors.subject ? "error-subject" : undefined}
+                    defaultValue=""
                   >
-                    <option value="">Selecione...</option>
+                    <option value="" disabled>
+                      Selecione...
+                    </option>
                     <option value="budget">Solicitação de Orçamento</option>
                     <option value="partnership">Parceria Comercial</option>
                     <option value="product">Dúvida sobre Produtos</option>
                     <option value="other">Outro Assunto</option>
                   </select>
+                  {errors.subject && (
+                    <p id="error-subject" className="mt-1 text-sm text-red-600">
+                      {errors.subject}
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -157,19 +256,30 @@ export default function SalesSection({
                   </Label>
                   <Textarea
                     id="message"
+                    name="message"
                     rows={5}
                     placeholder="Descreva sua necessidade..."
                     required
                     className="border-gray-300 focus:ring-primary"
+                    aria-invalid={errors.message ? "true" : "false"}
+                    aria-describedby={errors.message ? "error-message" : undefined}
                   />
+                  {errors.message && (
+                    <p id="error-message" className="mt-1 text-sm text-red-600">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex items-center">
                   <input
                     id="terms"
+                    name="terms"
                     type="checkbox"
                     required
                     className="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-primary"
+                    aria-invalid={errors.terms ? "true" : "false"}
+                    aria-describedby={errors.terms ? "error-terms" : undefined}
                   />
                   <label
                     htmlFor="terms"
@@ -179,13 +289,21 @@ export default function SalesSection({
                     comunicações comerciais
                   </label>
                 </div>
+                {errors.terms && (
+                  <p id="error-terms" className="mt-1 text-sm text-red-600">
+                    {errors.terms}
+                  </p>
+                )}
 
                 <Button
                   type="submit"
+                  disabled={sending}
                   className="w-full bg-primary hover:bg-primary py-3 text-lg font-medium"
                 >
-                  Enviar Solicitação
+                  {sending ? "Enviando..." : "Enviar Solicitação"}
                 </Button>
+
+                <span className="font-bold text-green-800">{sucessMessage}</span>
               </form>
             </div>
           </div>
