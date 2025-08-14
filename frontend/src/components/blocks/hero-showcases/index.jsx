@@ -36,20 +36,22 @@ export default function HeroShowcases() {
 
             {/* Description text */}
             <p className="text-muted-foreground max-w-xl text-lg">
-              A Laurem acredita que todos merecem liberdade. Nossos produtos são
-              feitos para você controlar, editar, e, se quiser, hospedar.
+              Tenha autonomia para escolher, personalizar e aproveitar
+              soluções digitais feitas sob medida para você. Na Laurem, você
+              adapta as ferramentas às suas necessidades e
+              objetivos.
             </p>
 
-          <div className="md:hidden border-muted/30 bg-muted/10 relative z-10 h-[300px] w-full overflow-hidden rounded-2xl border shadow-xl">
-            <Image
-              src="/img/home_section_1.avif"
-              alt="Designer's workspace with contemporary design elements"
-              fill
-              className="object-cover object-center"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-          </div>
+            <div className="md:hidden border-muted/30 bg-muted/10 relative z-10 h-[300px] w-full overflow-hidden rounded-2xl border shadow-xl">
+              <Image
+                src="/img/home_section_1.avif"
+                alt="Designer's workspace with contemporary design elements"
+                fill
+                className="object-cover object-center"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+            </div>
 
             {/* Featured clients section */}
             <section className="pt-2">

@@ -66,8 +66,8 @@ const ServicesSection = () => {
         </div>
         <div className="mt-20">
 
-          {servicos.map((servico) => (
-            <>
+          {servicos.map((servico, idx) => (
+            <div key={idx}>
               <div className="grid gap-16 lg:grid-cols-3 xl:gap-24"></div>
               <div className="flex flex-col gap-10  sm:flex-row lg:col-span-2 lg:pr-16 xl:pr-24">
                 <div className="bg-primary/10 flex h-24 w-24 items-center justify-center rounded-xl sm:h-40 sm:w-50">
@@ -129,7 +129,7 @@ const ServicesSection = () => {
               </div>
               <Separator className="my-10" />
 
-            </>
+            </div>
           ))}
 
         </div>

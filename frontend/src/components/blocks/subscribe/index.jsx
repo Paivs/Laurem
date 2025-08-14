@@ -1,7 +1,10 @@
+"use client"
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowRight, Mail } from "lucide-react";
+import { toast } from "sonner";
 
 export default function Subscribe() {
   return (
@@ -18,12 +21,16 @@ export default function Subscribe() {
           </div>
           <Input
             type="text"
-            id="subscribe-input"
-            name="subscribe-input"
+            id="email"
+            name="email"
             className="ps-9 "
             placeholder="Escreva seu e-mail" />
         </div>
-        <Button className="w-full sm:w-auto ">
+        <Button className="w-full sm:w-auto " onClick={() => {
+          toast.success("Isso aí!", {
+            description: "Ficamos felizes com sua participação"
+          })
+        }}>
           Entrar
           <ArrowRight className="size-3.5" />
         </Button>

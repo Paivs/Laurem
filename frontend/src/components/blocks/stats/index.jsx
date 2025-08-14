@@ -36,7 +36,7 @@ export default function Stats() {
                   </svg>
                   <div className="mt-3 sm:mt-5">
                     <h3 className="text-lg sm:text-3xl font-semibold">
-                      +<NumberUp value={53}/>
+                      +<NumberUp value={16}/>
                     </h3>
                     <p className="mt-1 text-sm sm:text-base text-muted-foreground">
                       Parceiros comerciais
@@ -60,7 +60,7 @@ export default function Stats() {
                   </div>
                   <div className="mt-3 sm:mt-5">
                     <h3 className="text-lg sm:text-3xl font-semibold">
-                      <NumberUp value={98} />%
+                      <NumberUp value={99} />%
                     </h3>
                     <p className="mt-1 text-sm sm:text-base text-muted-foreground">
                       Clientes satisfeitos
@@ -92,7 +92,7 @@ export default function Stats() {
                   <div className="mt-3 sm:mt-5">
                     <h3 className="text-lg sm:text-3xl font-semibold">
                       R$
-                      <NumberUp value={300}/>
+                      <NumberUp value={2.5}/>
                       M+
                     </h3>
                     <p className="mt-1 text-sm sm:text-base text-muted-foreground">

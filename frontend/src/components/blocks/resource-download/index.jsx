@@ -32,13 +32,13 @@ export default function ResourceDownload() {
           <div className="flex flex-col p-6 md:p-8 lg:p-10">
             <div className="max-w-md">
               <h2 className="text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl">
-                O manifesto Laurem pela soberania digital
+                O manifesto Laurem pela sua autonomia
               </h2>
 
               <p className="text-muted-foreground mt-3 md:text-lg">
-                A LAUREM acredita que o autônomo merece liberdade. Nossos
-                produtos são feitos para você controlar, editar, e, se quiser,
-                hospedar.
+                Tenha autonomia para escolher, personalizar e usar as soluções
+                que mais se adequam a você. A tecnologia trabalha
+                para você, não o contrário.
               </p>
 
               <ul className="mt-6 space-y-2">
@@ -48,11 +48,14 @@ export default function ResourceDownload() {
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2 text-lg">•</span>
-                  <span>Minimizar ou excluir dependências de terceiros</span>
+                  <span>Garantias de autonomia do usuário</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary mr-2 text-lg">•</span>
-                  <span>Promover o uso ético de tecnologia: privacidade, controle, simplicidade</span>
+                  <span>
+                    Promover o uso ético de tecnologia: privacidade, controle,
+                    simplicidade
+                  </span>
                 </li>
               </ul>
 

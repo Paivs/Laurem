@@ -26,7 +26,7 @@ export default function Footer2({
       links: [
         { text: "Sobre", url: "/sobre" },
         { text: "Blog", url: "/blog" },
-        { text: "Trabalhe conosco", url: "/trabalho" },
+        // { text: "Trabalhe conosco", url: "/trabalho" },
         { text: "Contato", url: "/contato" },
       ],
     },
@@ -34,7 +34,7 @@ export default function Footer2({
       title: "Recursos",
       links: [
         { text: "Eventos", url: "/eventos" },
-        { text: "Aprendizado", url: "/cursos" },
+        // { text: "Aprendizado", url: "/cursos" },
         { text: "Vendas", url: "/vendas" },
         { text: "Ajuda", url: "/ajuda" },
         { text: "Admin", url: "/auth/login" },
