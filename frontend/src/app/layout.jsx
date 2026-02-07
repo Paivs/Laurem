@@ -29,8 +29,8 @@ export default function RootLayout({ children }) {
         {process.env.NODE_ENV != "development" && (
           <Script
             defer
-            src="https://analytics.laurem.com.br/script.js"
-            data-website-id="09724eb3-cee1-48c8-bea1-0d28da78ec5a"
+            src="https://analytics.gustavo-paiva.dev.br/script.js"
+            data-website-id="0a9e2a90-4f19-463c-aec2-5ac1d6b82cc9"
           />
         )}
         <Toaster richColors position="bottom-right" />
